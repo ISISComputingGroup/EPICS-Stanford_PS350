@@ -1,10 +1,10 @@
-SUBDIRS=base base_examples extensions modules ISIS
+SUBDIRS=base base_examples extensions support ISIS
 
 all : $(SUBDIRS) base_examples
 
 extensions : base
-modules : base
-ISIS : modules
+support : base
+ISIS : support
 
 #MAKEBASEAPP=.\base\bin\${EPICS_HOST_ARCH}\makeBaseApp.pl
 #aaa : base

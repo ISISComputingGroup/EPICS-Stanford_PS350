@@ -10,7 +10,7 @@ SUPPORT=/home/oxygen/MOONEY/epics/synAppsSVN/support
 # Need SSCAN module only to build the swait record (recDynLink library)
 # If you comment this definition out, the module will just decline to
 # build the swait record.
-SSCAN=$(SUPPORT)/sscan-2-7
+SSCAN=$(SUPPORT)/sscan/2-8
 
 # EPICS_BASE usually appears last so other apps can override stuff:
 EPICS_BASE=/home/oxygen/MOONEY/epics/base-3.14.12.1
@@ -19,3 +19,4 @@ EPICS_BASE=/home/oxygen/MOONEY/epics/base-3.14.12.1
 #Capfast users may need the following definitions
 #CAPFAST_TEMPLATES=
 #SCH2EDIF_PATH=
+include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)

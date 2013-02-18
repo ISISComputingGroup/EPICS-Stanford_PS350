@@ -31,5 +31,5 @@ EPICS_BASE=$(TOP)/../base
 # other than EPICS_BASE:
 #RULES=/path/to/epics/support/module/rules/x-y
 
-ASYN=$(MODULES_SOFT)/asyn
-include $(TOP)/../EPICS_BASE.$(EPICS_HOST_ARCH)
+ASYN=$(SUPPORT)/asyn/4-18
+include $(TOP)/../ISIS_CONFIG.$(EPICS_HOST_ARCH)

@@ -1,25 +1,28 @@
 set MYDIR=%~dp0
 
-call %MYDIR%base\startup\win32.bat
+set BASE_VERSION=3.14.12.2
+set EPICS_BASE=%MYDIR%base\%BASE_VERSION%
+
+call %EPICS_BASE%\startup\win32.bat
 
 REM utils (make, sed etc.)
-set PATH=%MYDIR%utils_win32;%PATH%
+set PATH=%MYDIR%utils_win32;c:\strawberry\perl\bin;%PATH%
 
 REM epics base and extensions
-set PATH=%MYDIR%base\bin\%EPICS_HOST_ARCH%;%PATH%
+set PATH=%EPICS_BASE%\bin\%EPICS_HOST_ARCH%;%PATH%
 set PATH=%MYDIR%extensions\bin\%EPICS_HOST_ARCH%;%PATH%
 
 REM various things in modules\soft
-set PATH=%MYDIR%modules\soft\bin\%EPICS_HOST_ARCH%;%PATH%
-set PATH=%MYDIR%modules\soft\sscan\bin\%EPICS_HOST_ARCH%;%PATH%
-set PATH=%MYDIR%modules\soft\motor\bin\%EPICS_HOST_ARCH%;%PATH%
-set PATH=%MYDIR%modules\soft\calc\bin\%EPICS_HOST_ARCH%;%PATH%
-set PATH=%MYDIR%modules\soft\asyn\bin\%EPICS_HOST_ARCH%;%PATH%
+set PATH=%MYDIR%support\bin\%EPICS_HOST_ARCH%;%PATH%
+set PATH=%MYDIR%support\sscan\bin\%EPICS_HOST_ARCH%;%PATH%
+set PATH=%MYDIR%support\motor\bin\%EPICS_HOST_ARCH%;%PATH%
+set PATH=%MYDIR%support\calc\bin\%EPICS_HOST_ARCH%;%PATH%
+set PATH=%MYDIR%support\asyn\bin\%EPICS_HOST_ARCH%;%PATH%
 
 REM POCO 
 set PATH=%MYDIR%Third_Party\POCO\bin_x64;%PATH%
 
 REM create include for path to EPICS_BASE
-echo EPICS_BASE=%MYDIR%base> %MYDIR%EPICS_BASE.%EPICS_HOST_ARCH%
-echo MODULES_SOFT=%MYDIR%modules\soft>> %MYDIR%EPICS_BASE.%EPICS_HOST_ARCH%
-sed -i -e "s=\\=/=g" %MYDIR%EPICS_BASE.%EPICS_HOST_ARCH%
+echo EPICS_BASE=%EPICS_BASE%> %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
+echo SUPPORT=%MYDIR%support>> %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
+sed -i -e "s=\\=/=g" %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
