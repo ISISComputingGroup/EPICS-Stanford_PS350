@@ -72,8 +72,10 @@ REM set LIBPATH=C:\Program Files\Microsoft SDKs\Windows\v7.0\lib;%LIBPATH%
 REM set     LIB=C:\Program Files\Microsoft SDKs\Windows\v7.0\lib;%LIB%
 
 REM    ----- Visual Studion 2010 -----
-REM --  windows-x64 ---
-call "C:\Program files\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x64
+REM --  windows-x64 on 64bit computer ---
+call "C:\Program files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x64
+REM --  windows-x64 on 32bit computer ---
+REM call "C:\Program files\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x64
 REM --  win32-x86 ---
 REM call "C:\Program files\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86
 
