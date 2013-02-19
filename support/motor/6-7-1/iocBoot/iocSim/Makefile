@@ -1,6 +1,6 @@
 TOP = ../..
 include $(TOP)/configure/CONFIG
-ARCH = linux-x86
+ARCH = $(EPICS_HOST_ARCH)
 #ARCH = linux-x86_64
 #ARCH = vxWorks-ppc604
 TARGETS = cdCommands
