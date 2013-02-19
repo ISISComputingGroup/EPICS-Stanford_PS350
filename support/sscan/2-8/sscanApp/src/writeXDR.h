@@ -2,7 +2,12 @@
 #include <stdio.h>
 #include <epicsTypes.h>
 
+#ifdef _WIN32
 typedef int (*xdrproc_t)();
+typedef void* caddr_t;
+typedef unsigned u_int;
+#endif /* _WIN32 */
+
 
 extern int write_XDR_Init();
 extern int writeXDR_char(FILE *fd, char *cp);

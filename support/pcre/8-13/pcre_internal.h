@@ -90,6 +90,7 @@ setjmp and stdarg are used is when NO_RECURSE is set. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
 /* When compiling a DLL for Windows, the exported symbols have to be declared
 using some MS magic. I found some useful information on this web page:
@@ -651,7 +652,11 @@ variable-length repeat, or a anything other than literal characters. */
 environments where these macros are defined elsewhere. Unfortunately, there
 is no way to do the same for the typedef. */
 
+#ifdef vxWorks
+#undef OK
+#else
 typedef int BOOL;
+#endif
 
 #ifndef FALSE
 #define FALSE   0
