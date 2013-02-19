@@ -81,6 +81,7 @@ REM ======================================================
 REM --------------- EPICS --------------------------------
 REM ======================================================
 set EPICS_HOST_ARCH=windows-x64
+REM set EPICS_HOST_ARCH=windows-x64-debug
 REM set EPICS_HOST_ARCH=win32-x86
 REM set PATH=%PATH%;G:\epics\base\bin\%EPICS_HOST_ARCH%
 REM set PATH=%PATH%;G:\epics\extensions\bin\%EPICS_HOST_ARCH%

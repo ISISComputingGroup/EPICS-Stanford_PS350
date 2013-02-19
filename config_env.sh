@@ -8,8 +8,9 @@ export MY_EPICS_BASE="${epics_base_path}"
 # create include for path to EPICS_BASE
 set_epics_base="EPICS_BASE=${epics_base_path}"
 echo "${set_epics_base}" > ISIS_CONFIG.${EPICS_HOST_ARCH}
-
 echo "SUPPORT=${mydir}/support" >> ISIS_CONFIG.${EPICS_HOST_ARCH}
+# echo "INSTALL_LOCATION$=${mydir}/install" >> ISIS_CONFIG.${EPICS_HOST_ARCH}
+# echo "INSTALL_LOCATION_APP=${mydir}/install" >> ISIS_CONFIG.${EPICS_HOST_ARCH}
 
 # epics base and extensions
 export PATH=${epics_base_path}/bin/${EPICS_HOST_ARCH}:${PATH}

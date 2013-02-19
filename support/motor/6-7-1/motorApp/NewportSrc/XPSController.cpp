@@ -91,13 +91,14 @@ using std::endl;
 
 #include <epicsTime.h>
 #include <epicsThread.h>
-#include <epicsExport.h>
 #include <epicsString.h>
 #include <iocsh.h>
 
 #include "XPSController.h"
 #include "XPS_C8_drivers.h"
 #include "xps_ftp.h"
+
+#include <epicsExport.h>
 
 static const char *driverName = "XPSController";
 

@@ -2,8 +2,6 @@
 /**/
 #include <stdio.h>
 #include <time.h>
-#define epicsExportSharedSymbols
-#include <shareLib.h>
 #include "XPS_C8_drivers.h"
 #include "Socket.h"
 #include "xps_ftp.h"

@@ -39,6 +39,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <shareLib.h>
 
 /******[ defines ]***************************************************/
 /* #define DEBUG */
@@ -55,15 +56,15 @@ extern "C" {
 
 /******[ global variables ]******************************************/
 
-int ftpChangeDir (int, char*);
+epicsShareFunc int ftpChangeDir (int, char*);
 
 /******[ prototypes ]************************************************/
 /* FTP commands */
-int ftpConnect (char*, char*, char*, int*);
-int ftpDisconnect (int);
-int ftpChangeDir (int, char*);
-int ftpRetrieveFile (int, char*);
-int ftpStoreFile(int, char*);
+epicsShareFunc int ftpConnect (char*, char*, char*, int*);
+epicsShareFunc int ftpDisconnect (int);
+epicsShareFunc int ftpChangeDir (int, char*);
+epicsShareFunc int ftpRetrieveFile (int, char*);
+epicsShareFunc int ftpStoreFile(int, char*);
 
 #ifdef __cplusplus
 }

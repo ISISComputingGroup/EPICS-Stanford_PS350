@@ -1,6 +1,6 @@
-SUBDIRS=seq ipac sscan calc asyn busy ip pcre StreamDevice # eurotherm2k
+SUBDIRS=seq ipac sscan calc asyn busy ip motor pcre StreamDevice # eurotherm2k
 ifeq ($(findstring windows,$(EPICS_HOST_ARCH)),) 
-SUBDIRS += motor galil 
+SUBDIRS += galil 
 endif  
 
 all : $(SUBDIRS)

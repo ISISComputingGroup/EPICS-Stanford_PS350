@@ -88,12 +88,13 @@ Versions: Release 4-5 and higher.
 using std::cout;
 using std::endl;
 
+
 #include <epicsTime.h>
 #include <epicsThread.h>
-#include <epicsExport.h>
 #include <epicsExit.h>
 #include <epicsString.h>
 #include <iocsh.h>
+
 
 #include "XPSController.h"
 #include "XPS_C8_drivers.h"

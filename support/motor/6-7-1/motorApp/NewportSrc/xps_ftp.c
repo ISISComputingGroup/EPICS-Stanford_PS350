@@ -19,6 +19,7 @@
 
 /******[ includes ]**************************************************/
 #include "xps_ftp.h"
+#include <epicsExport.h>
 
 /* local functions */
 static int code(char*);
@@ -30,7 +31,7 @@ static void printRecv (char*, int);
 
 
 /******[ ftpConnect ]************************************************/
-int ftpConnect (char* ip, char* login, char* password, int* socketFD)
+epicsShareFunc int ftpConnect (char* ip, char* login, char* password, int* socketFD)
 {
   char command[COMMAND_SIZE];
   char returnString[RETURN_SIZE];
@@ -74,7 +75,7 @@ int ftpConnect (char* ip, char* login, char* password, int* socketFD)
 
 
 /******[ ftpDisconnect ]*********************************************/
-int ftpDisconnect (int socketFD)
+epicsShareFunc int ftpDisconnect (int socketFD)
 {
 #ifdef _WIN32
   return closesocket(socketFD);
@@ -85,7 +86,7 @@ int ftpDisconnect (int socketFD)
 
 
 /******[ ftpChangeDir ]**********************************************/
-int ftpChangeDir (int socketFD, char* destination)
+epicsShareFunc int ftpChangeDir (int socketFD, char* destination)
 {
   char command[COMMAND_SIZE];
   char returnString[RETURN_SIZE];
@@ -99,7 +100,7 @@ int ftpChangeDir (int socketFD, char* destination)
 
 
 /******[ ftpRetrieveFile ]*******************************************/
-int ftpRetrieveFile(int socketFD, char *filename)
+epicsShareFunc int ftpRetrieveFile(int socketFD, char *filename)
 {
   int port_rcv, socketFDReceive, i;
   struct sockaddr_in adr_rcv;
@@ -172,7 +173,7 @@ int ftpRetrieveFile(int socketFD, char *filename)
 
 
 /******[ ftpStoreFile ]**********************************************/
-int ftpStoreFile(int socketFD, char *filename)
+epicsShareFunc int ftpStoreFile(int socketFD, char *filename)
 {
   int port_snd, socketFDSend, i;
   struct sockaddr_in adr_snd;
