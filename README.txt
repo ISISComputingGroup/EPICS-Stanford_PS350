@@ -3,43 +3,28 @@ Building on Windows
 
 * Initial Setup
 
-You need to have perl installed - either strawberry perl (http://strawberryperl.com/) or active state perl (http://www.activestate.com/activeperl/downloads)
-
-edit base/startup/win32.bat 
-- update the line "ActiveState perl" to include where perl is insralled e.g.
-
-  set PATH=c:\strawberry\perl\bin;%PATH%
-
-- update the line "gnuwin32 make" and change to point to the checked out "utils_win32" directory e.g.
-
-  set PATH=c:\development\EPICS\utils_win32;%PATH%
-
-- update the line "Visual Studio 2010" 
+You need to have perl installed - either strawberry perl (http://strawberryperl.com/) or active state perl (http://www.activestate.com/activeperl/downloads). The ISIS base/startup/win32.bat assumes strawberry perl
+installed to "c:\strawberry\perl" so you may need to edit this file if this is not the case
+ 
+You also need a Microsoft Visual C++ compiler - either full visual studio or the experss version.
+You may need to edit the appropriate point in  base/startup/win32.bat to specify its location - the ISIS default works
+for a 64bit computer compiling 64bit images.
   
-  uncomment "window-x64" line and comment out "win32-x86" line
+checkl EPICS_HOST_ARCH in base/startup/win32.bat - default is windows-x64
 
-- update the line "--- EPICS ---"
-  
-  use "set EPICS_HOST_ARCH=windows-x64"  rather than win32-x86
-  update the other   set PATH   lines to point to your epics checkout location
+* Building
 
-* Building base
+  config_env
+  make
 
-- Open a visual studio win x64 win64 command console
-- cd to the "base" checked out epics distribution
-- type    startup/win32.bat    to set your environment
-- type    make
+(you may need to run “make” twice the very first time - "config_env.bat" only needs to be run once for a given command shell)
 
-* build examples
+The above will build epics base + iocs - you do not need a separate copy of epics base on your computer. The PATH will also be set in your command shell, so caget etc. will be available. I’ll send out further instructions on how to run the IOCs etc. The galil driver does not currently build on windows, but the mclennan and “simulated motor” do. To start a simulated motor ioc do:
 
-- cd base_examples
-- run   generate_examples.bat
-- make
+    cd C:\development\EPICS\support\motor\6-7-1\iocBoot\iocSim
+    ..\..\bin\windows-x64\WithASyn.exe   st.cmd.unix
 
-* building in general
-
-- Open a visual studio win x64 win64 command console and run "base/startup/win32.bat" before running make
-- type "make clean uninstall" to remove build files
+you can then type “dbl” at the epics> prompt to see your PVs and then then open another cmd, run config_env (to set paths) and then use e.g. caget to read them
 
 ----
-Freddie Akeroyd, 03/01/2012
+Freddie Akeroyd, 19/02/2013
