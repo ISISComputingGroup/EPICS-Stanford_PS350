@@ -86,7 +86,7 @@ getOption(void *drvPvt, asynUser *pasynUser,
                               const char *key, char *val, int valSize)
 {
     ttyController_t *tty = (ttyController_t *)drvPvt;
-    DWORD commConfigSize;
+    DWORD commConfigSize = sizeof(tty->commConfig);
     BOOL ret;
     DWORD error;
     int l;
@@ -162,7 +162,7 @@ static asynStatus
 setOption(void *drvPvt, asynUser *pasynUser, const char *key, const char *val)
 {
     ttyController_t *tty = (ttyController_t *)drvPvt;
-    DWORD commConfigSize;
+    DWORD commConfigSize = sizeof(tty->commConfig);
     BOOL ret;
     DWORD error;
 
@@ -302,7 +302,7 @@ setOption(void *drvPvt, asynUser *pasynUser, const char *key, const char *val)
     if (ret == 0) {
         error = GetLastError();
         epicsSnprintf(pasynUser->errorMessage,pasynUser->errorMessageSize,
-                            "%s error calling GetCommConfig %d", tty->serialDeviceName, error);
+                            "%s error calling SetCommConfig %d", tty->serialDeviceName, error);
         return asynError;
     }
     return asynSuccess;
