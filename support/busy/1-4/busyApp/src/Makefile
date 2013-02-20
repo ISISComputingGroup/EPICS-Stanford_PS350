@@ -11,7 +11,7 @@ LIB_SRCS += busyRecord.c
 LIB_SRCS += devBusySoft.c
 LIB_SRCS += devBusySoftRaw.c
 
-ifdef ASYNPPP
+ifdef ASYN
 	LIB_SRCS += devBusyAsyn.c
 	LIB_LIBS += asyn
 endif
@@ -21,7 +21,7 @@ include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
 
-ifdef ASYNPPP
+ifdef ASYN
 busySupport.dbd: ../busySupport_LOCAL.dbd ../busySupport_withASYN.dbd
 	perl ../cat.pl ../busySupport_LOCAL.dbd ../busySupport_withASYN.dbd  busySupport.dbd
 else

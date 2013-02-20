@@ -15,5 +15,5 @@ include $(TOP)/configure/CONFIG_APP
 ifeq (Darwin, $(OS_CLASS))
   STATIC_BUILD=NO
 else
-  STATIC_BUILD=YES
+  STATIC_BUILD=NO
 endif
