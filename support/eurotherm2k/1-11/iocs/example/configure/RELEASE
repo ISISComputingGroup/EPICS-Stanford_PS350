@@ -8,5 +8,6 @@ EPICS_BASE = /dls_sw/epics/R3.14.11/base
 ASYN = $(SUPPORT)/asyn/4-18
 EUROTHERM2K = $(SUPPORT)/eurotherm2k/1-11
 STREAMDEVICE = $(SUPPORT)/StreamDevice
+PCRE = $(SUPPORT)/pcre
 
 include $(TOP)/../../../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)

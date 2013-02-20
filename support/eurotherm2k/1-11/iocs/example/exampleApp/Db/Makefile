@@ -8,6 +8,7 @@ include $(TOP)/configure/CONFIG
 
 PATH := $(PATH):/dls_sw/epics/R3.14.11/extensions/bin/linux-x86
 DB += example_expanded.db
+#USR_DBFLAGS += -V -MEUROTHERM2K=$(EUROTHERM2K) -I$(EUROTHERM2K)
 
 include $(TOP)/configure/RULES
 
