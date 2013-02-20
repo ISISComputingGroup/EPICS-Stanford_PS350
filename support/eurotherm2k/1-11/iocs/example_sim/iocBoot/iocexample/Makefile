@@ -10,10 +10,11 @@ ARCH=$(EPICS_HOST_ARCH)
 SCRIPTS += ../stexample.sh
 #SCRIPTS += stexample.boot
 PATH := $(PATH):/dls_sw/epics/R3.14.11/extensions/bin/linux-x86
-TARGETS += cdCommands envPaths
-ifneq ($(findstring windows,$(ARCH)),) 
-TARGETS += dllpath.bat
-endif  
+TARGETS += envPaths
+#TARGETS += cdCommands
+#ifneq ($(findstring windows,$(ARCH)),) 
+#TARGETS += dllpath.bat
+#endif  
 
 include $(TOP)/configure/RULES.ioc
 
