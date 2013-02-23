@@ -71,9 +71,20 @@ REM set INCLUDE=C:\Program Files\Microsoft SDKs\Windows\v7.0\include;%INCLUDE%
 REM set LIBPATH=C:\Program Files\Microsoft SDKs\Windows\v7.0\lib;%LIBPATH%
 REM set     LIB=C:\Program Files\Microsoft SDKs\Windows\v7.0\lib;%LIB%
 
-REM    ----- Visual Studion 2010 -----
+REM    ----- Visual Studio 2010 or 2012, prefer 2012 if both exist -----
+if exist "C:\Program files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" set VCVERSION=10.0
+if exist "C:\Program files (x86)\Microsoft Visual Studio 11.0\VC\vcvarsall.bat" set VCVERSION=11.0
 REM --  windows-x64 on 64bit computer ---
-call "C:\Program files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x64
+if exist "C:\Program files (x86)\Microsoft Visual Studio %VCVERSION%\VC\vcvarsall.bat" (
+REM -- express 2012 provides a 64bit cross compiler, the full version has both 64bit native and cross
+    if exist "C:\Program files (x86)\Microsoft Visual Studio %VCVERSION%\VC\bin\amd64" (
+	    @echo Using Visual Studio %VCVERSION% x64 native compiler
+        call "C:\Program files (x86)\Microsoft Visual Studio %VCVERSION%\VC\vcvarsall.bat" x64
+	) else (
+	    @echo Using Visual Studio %VCVERSION% x64 cross compiler
+        call "C:\Program files (x86)\Microsoft Visual Studio %VCVERSION%\VC\vcvarsall.bat" x86_amd64
+	)
+)
 REM --  windows-x64 on 32bit computer ---
 REM call "C:\Program files\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x64
 REM --  win32-x86 ---

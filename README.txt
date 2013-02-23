@@ -3,12 +3,13 @@ Building on Windows
 
 * Initial Setup
 
-You need to have perl installed - either strawberry perl (http://strawberryperl.com/) or active state perl (http://www.activestate.com/activeperl/downloads). The ISIS base/startup/win32.bat assumes strawberry perl
-installed to "c:\strawberry\perl" so you may need to edit this file if this is not the case
+You need to have perl installed - either strawberry perl (http://strawberryperl.com/) or 
+active state perl (http://www.activestate.com/activeperl/downloads). The ISIS base/startup/win32.bat assumes strawberry perl
+installed to "c:\strawberry" (the default) providing c:\strawberry\perl\bin\perl.exe  so you may need to edit this file if this is not the case
  
-You also need a Microsoft Visual C++ compiler - either full visual studio or the experss version.
-You may need to edit the appropriate point in  base/startup/win32.bat to specify its location - the ISIS default works
-for a 64bit computer compiling 64bit images.
+You also need a Microsoft Visual C++ compiler - either full visual studio or the experss version. Express 2010 does 
+not include a 64bit compiler, but experss 2012 does. You may need to edit the appropriate point in  base/startup/win32.bat to 
+specify its location - the ISIS default works for a 64bit computer compiling 64bit images.
   
 checkl EPICS_HOST_ARCH in base/startup/win32.bat - default is windows-x64
 
