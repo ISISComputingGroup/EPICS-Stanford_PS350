@@ -13,7 +13,7 @@ typedef int pid_t;
 #else
 #include <sys/time.h>
 #include <sys/param.h>
-#include <asm/system.h>
+/*#include <asm/system.h>*/
 #include <bits/types.h>
 #define FAR
 #define PASCAL

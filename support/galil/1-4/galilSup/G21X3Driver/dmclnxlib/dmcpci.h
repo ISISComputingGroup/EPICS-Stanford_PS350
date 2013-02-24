@@ -3,7 +3,7 @@
 
 #ifndef _WIN32
 #include <sys/pci.h>
-#include <sys/osinfo.h>
+/*#include <sys/osinfo.h>*/
 #endif /* _WIN32 */
 
 extern long PCIBUSReadData(int iIndex, PCHAR pchResponse, ULONG cbResponse, PULONG pulBytesRead);
