@@ -1,8 +1,10 @@
 #ifndef INCLUDE_PCIBUS
 #define INCLUDE_PCIBUS
 
-//#include <sys/pci.h>
-//#include <sys/osinfo.h>
+#ifndef _WIN32
+#include <sys/pci.h>
+#include <sys/osinfo.h>
+#endif /* _WIN32 */
 
 extern long PCIBUSReadData(int iIndex, PCHAR pchResponse, ULONG cbResponse, PULONG pulBytesRead);
 extern long PCIBUSWriteData(int iIndex, PCHAR pchCommand, ULONG cbCommand, PULONG pulBytesWritten);

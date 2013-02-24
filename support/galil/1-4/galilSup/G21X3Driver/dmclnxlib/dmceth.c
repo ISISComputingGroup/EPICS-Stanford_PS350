@@ -2,8 +2,12 @@
 
 #ifdef DMC_ETHERNET
 
+#ifdef _WIN32
 #include <winsock2.h>
 #include <Ws2tcpip.h>
+#else
+#define closesocket close
+#endif /* _WIN32 */
 
 long OpenSocket(int iIndex)
 {
