@@ -19,6 +19,7 @@ galil_SRCS += GalilRegister.cc devG21X3.cc devAiG21X3.cc devAoG21X3.cc devMbbiG2
 
 galil_LIBS += dmclnx motor
 galil_LIBS += $(EPICS_BASE_IOC_LIBS)
+galil_SYS_LIBS_WIN32 += ws2_32
 
 include $(TOP)/configure/RULES
 

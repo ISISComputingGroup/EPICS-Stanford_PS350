@@ -6,6 +6,8 @@ include $(TOP)/configure/CONFIG
 #=============================
 
 #=============================
+LIBRARY_IOC += randSupport
+
 # Build the IOC application
 
 PROD_IOC = rand
@@ -19,13 +21,13 @@ rand_DBD += base.dbd
 rand_DBD += randdev.dbd
 
 # Add all the support libraries needed by this IOC
-#rand_LIBS += xxx
+rand_LIBS += randSupport
 
 # rand_registerRecordDeviceDriver.cpp derives from rand.dbd
 rand_SRCS += rand_registerRecordDeviceDriver.cpp
 
-rand_SRCS += devRand.c
-rand_SRCS += devRandAsync.c
+randSupport_SRCS += devRand.c
+randSupport_SRCS += devRandAsync.c
 
 # Build the main IOC entry point on workstation OSs.
 rand_SRCS_DEFAULT += randMain.cpp
@@ -36,6 +38,7 @@ rand_SRCS_vxWorks += -nil-
 
 # Finally link to the EPICS Base libraries
 rand_LIBS += $(EPICS_BASE_IOC_LIBS)
+randSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
 

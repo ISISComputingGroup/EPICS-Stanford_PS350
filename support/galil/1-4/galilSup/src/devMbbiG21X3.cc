@@ -15,12 +15,13 @@
 
 #include "GalilInterface.h"
 
-#include <epicsExport.h>
 #include <errlog.h>
+#include <epicsExport.h>
 
 static long init_mbbiDirect_record(struct mbbiDirectRecord *pmbbi);
 static long read_mbbiDirect(struct mbbiDirectRecord *pmbbi);
 
+extern "C" {
 struct  {
 	long number;
 	DEVSUPFUN report;
@@ -37,7 +38,9 @@ struct  {
 		NULL,
 		(DEVSUPFUN)read_mbbiDirect
 		};
+
 epicsExportAddress(dset,devMbbiDirectG21X3);
+}
 
 static long
 init_mbbiDirect_record(struct mbbiDirectRecord *pmbbi)

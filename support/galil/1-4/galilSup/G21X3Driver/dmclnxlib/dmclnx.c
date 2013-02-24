@@ -85,6 +85,7 @@ LONG FAR GALILCALL DMCOpen(PCONTROLLERINFO pcontrollerinfo, PHANDLEDMC phdmc)
 
 	switch ( pcontrollerinfo->fControllerType )
 	{
+#if defined(DMC_ISABUS) || defined(DMC_PCIBUS)
 		case ControllerTypeISABus:
   	case ControllerTypePCIBus:
 	  	rc = OpenDriver( iIndex, pcontrollerinfo );
@@ -96,7 +97,8 @@ LONG FAR GALILCALL DMCOpen(PCONTROLLERINFO pcontrollerinfo, PHANDLEDMC phdmc)
 #endif
       	return rc;
   		}	break;
-		
+#endif		
+#ifdef DMC_SERIAL
 		case ControllerTypeSerial:
 	  	rc = OpenPort(iIndex);
   	  if (rc)
@@ -107,7 +109,7 @@ LONG FAR GALILCALL DMCOpen(PCONTROLLERINFO pcontrollerinfo, PHANDLEDMC phdmc)
 #endif
       	return rc;
   		}	break;
-
+#endif
 		case ControllerTypeEthernet:
 	  	rc = OpenSocket(iIndex);
 	    if (rc)

@@ -112,13 +112,14 @@
 #include <special.h>
 #include <callback.h>
 #include <taskwd.h>
-#include "sCalcPostfix.h"
-#include "sCalcPostfixPvt.h"	/* define BAD_EXPRESSION, END_STACK */
 
 #define GEN_SIZE_OFFSET
 #include "transformRecord.h"
 #undef GEN_SIZE_OFFSET
 #include "epicsExport.h"
+
+#include "sCalcPostfix.h"
+#include "sCalcPostfixPvt.h"	/* define BAD_EXPRESSION, END_STACK */
 
 #ifdef NODEBUG
 #define Debug(l,FMT,V) ;

@@ -46,13 +46,15 @@
 #include	<special.h>
 #include	<callback.h>
 #include	<taskwd.h>
+
+#include	<epicsExport.h>
+
 #include	"aCalcPostfix.h"
 
 #define GEN_SIZE_OFFSET
 #include	"aCalcoutRecord.h"
 #undef  GEN_SIZE_OFFSET
 #include	<menuIvoa.h>
-#include	<epicsExport.h>
 
 /* Create RSET - Record Support Entry Table*/
 #define report NULL

@@ -31,7 +31,6 @@
 #include 	<ctype.h>
 #include        <epicsThread.h>
 #include        <epicsMutex.h>
-#include        <epicsExport.h>
 #include        <drvSup.h>
 #include        "dmclnx.h"
 #include        "motordrvCom.h"
@@ -39,6 +38,7 @@
 #include        "motordrvComCode.h"
 #include        "drvG21X3.h"
 #include 	"GalilInterface.h"
+#include        <epicsExport.h>
 
 #define STATIC static
 
@@ -214,7 +214,7 @@ struct driver_table G21X3_access =
     NULL
 };
 
-
+extern "C" {
 struct
 {
     long number;
@@ -228,7 +228,7 @@ struct
 } drvG21X3 = {2, report, init};
 
 epicsExportAddress(drvet, drvG21X3);
-
+}
 
 STATIC struct thread_args targs = {SCAN_RATE, &G21X3_access};
 

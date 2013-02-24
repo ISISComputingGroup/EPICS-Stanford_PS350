@@ -76,13 +76,14 @@
 #include	<callback.h>
 #include	<taskwd.h>
 #include	<epicsString.h>	/* for epicsStrSnPrintEscaped() */
-#include	"sCalcPostfix.h"
 
 #define GEN_SIZE_OFFSET
 #include	"sCalcoutRecord.h"
 #undef  GEN_SIZE_OFFSET
 #include	<menuIvoa.h>
 #include	<epicsExport.h>
+
+#include	"sCalcPostfix.h"
 
 /* Create RSET - Record Support Entry Table*/
 #define report NULL

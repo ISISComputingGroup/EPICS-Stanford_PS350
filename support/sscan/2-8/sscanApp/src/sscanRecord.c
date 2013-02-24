@@ -326,8 +326,9 @@
 #include <dbStaticLib.h>	/* for enumStrings stuff */
 #include <epicsVersion.h>       /* for LT_EPICSBASE macro */
 
-#include	"recDynLink.h"
 #include "epicsExport.h"
+
+#include "recDynLink.h"
 
 #define GEN_SIZE_OFFSET
 #include "sscanRecord.h"

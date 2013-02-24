@@ -11,12 +11,13 @@
 
 #include "GalilInterface.h"
 
-#include <epicsExport.h>
 #include <errlog.h>
+#include <epicsExport.h>
 
 static long init_mbboDirect_record(struct mbboDirectRecord *pmbbo);
 static long write_mbboDirect(struct mbboDirectRecord *pmbbo);
 
+extern "C" {
 struct  {
 	long		number;
 	DEVSUPFUN	report;
@@ -34,6 +35,7 @@ struct  {
 		(DEVSUPFUN)write_mbboDirect
 		};
 epicsExportAddress(dset,devMbboDirectG21X3);
+}
 
 static long
 init_mbboDirect_record(struct mbboDirectRecord *pmbbo)

@@ -44,9 +44,9 @@
 #include <aoRecord.h>
 
 #include "GalilInterface.h"
-#include <epicsExport.h>
 
 #include <errlog.h>
+#include <epicsExport.h>
 
 /* The following must match the definition in choiceGbl.ascii */
 #define LINEAR 1
@@ -56,6 +56,7 @@ static long init_record(struct aoRecord *pao);
 static long write_ao(struct aoRecord *pao);
 static long special_linconv(struct aoRecord *pao, int after);
 
+extern "C" {
 struct {
 	long		number;
 	DEVSUPFUN	report;
@@ -75,6 +76,7 @@ struct {
 		(DEVSUPFUN)special_linconv
 		};
 epicsExportAddress(dset,devAoG21X3);
+}
 
 static long
 init_record(struct aoRecord *pao)

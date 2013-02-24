@@ -96,9 +96,10 @@ using std::endl;
 
 #include "XPSController.h"
 #include "XPS_C8_drivers.h"
-#include "xps_ftp.h"
 
 #include <epicsExport.h>
+
+#include "xps_ftp.h"
 
 static const char *driverName = "XPSController";
 

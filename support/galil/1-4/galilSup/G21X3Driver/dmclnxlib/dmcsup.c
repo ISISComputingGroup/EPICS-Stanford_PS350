@@ -274,6 +274,11 @@ ULONG DMCGetTime(void)
 {
 	unsigned long ulTemp=0;
 	int nRetCode=0;
+#ifdef _WIN32
+    struct timeb tp;
+    ftime(&tp);
+	ulTemp = ( 1000 * tp.time + tp.millitm );
+#else
 	struct timeval tv;
 	struct timezone tz;
 	gettimeofday(&tv, &tz);
@@ -288,6 +293,7 @@ ULONG DMCGetTime(void)
 	}
 	printf("ulTemp <%i> tv.tv_sec<%i>.\n", ulTemp, tv.tv_sec);
 	*/
+#endif
 	return  ulTemp; // Just take the first 10k sec of epoch.
 }
 

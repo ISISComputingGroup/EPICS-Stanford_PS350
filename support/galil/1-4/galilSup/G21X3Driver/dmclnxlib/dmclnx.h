@@ -1,56 +1,22 @@
 #ifndef INCLUDE_DMCCOM
 #define INCLUDE_DMCCOM
 
+#ifdef _WIN32
+#include <winsock2.h>
+#include <windows.h>
+#include <sys/timeb.h>
+#define strncasecmp strnicmp
+typedef int pid_t;
+#define MAX(a,b) ((a) > (b) ? (a) : (b))
+#define MIN(a,b) ((a) < (b) ? (a) : (b))
+#define usleep(a) Sleep(a / 1000)
+#else
 #include <sys/time.h>
 #include <sys/param.h>
-//#include <asm/system.h>
+#include <asm/system.h>
 #include <bits/types.h>
-
-#include <ctype.h>
-#include <stdio.h>
-#include <malloc.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-
-#define DMC_DEBUG               //Enable debug trace
-
-#if defined(DMC_DEBUG)
-   //#include <sys/trace.h>
-   //#include <sys/tracecod.h>
-#endif
-
-// ISA bus communications
-#define DMC_ISABUS              /* Enable base ISA bus communications */
-
-// PCI bus communications
-#define DMC_PCIBUS              /* Enable base PCI bus communications */
-
-// ISA and PCI Bus communications options
-#if defined(DMC_ISABUS) || defined(DMC_PCIBUS)
-#define DMC_INTERRUPTS         /* Enable interrupts */
-#endif //DMC_ISABUS || DMC_PCIBUS
-
-// Serial communications
-#define DMC_SERIAL                /* Enable base serial communications */
-
-// Ethernet communications
-#define DMC_ETHERNET
-
-// Advanced communications options
-#define DMC_BINARYCOMMANDS      	// Enable binary command interface (DMC-1200/DMC-1600/DMC-1700/DMC-1800/DMC-2000 only)
-#define DMC_FIRMWARE            	// Enable firmware updates (DMC-1200/DMC-1600/DMC-1700/DMC-1800/DMC-2000 only)
-#define DMC_DATARECORDACCESS   	 	// Enable data record access (DMC-1600/DMC-1700/DMC-1800 only)
-#define DMC_DATARECORDACCESSQR  	// Enable data record access for controllers which can use the QR command
-
-#ifdef __cplusplus
-   extern "C" {
-#endif
-
 #define FAR
 #define PASCAL
-
 /* Common data types */
 typedef short int SHORT;
 typedef short int FAR* PSHORT;
@@ -73,6 +39,53 @@ typedef void FAR* PVOID;
 typedef unsigned int UINT;
 typedef unsigned short WORD;
 typedef unsigned long DWORD;
+#endif /* ifdef _WIN32 */
+
+#include <errno.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <malloc.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#define DMC_DEBUG               //Enable debug trace
+
+#if defined(DMC_DEBUG)
+   //#include <sys/trace.h>
+   //#include <sys/tracecod.h>
+#endif
+
+#ifndef _WIN32
+// ISA bus communications
+#define DMC_ISABUS              /* Enable base ISA bus communications */
+// PCI bus communications
+#define DMC_PCIBUS              /* Enable base PCI bus communications */
+// Serial communications
+#define DMC_SERIAL                /* Enable base serial communications */
+#endif /* ifndef _WIN32 */
+
+// ISA and PCI Bus communications options
+#if defined(DMC_ISABUS) || defined(DMC_PCIBUS)
+#define DMC_INTERRUPTS         /* Enable interrupts */
+#endif //DMC_ISABUS || DMC_PCIBUS
+
+
+// Ethernet communications
+#define DMC_ETHERNET
+
+// Advanced communications options
+#define DMC_BINARYCOMMANDS      	// Enable binary command interface (DMC-1200/DMC-1600/DMC-1700/DMC-1800/DMC-2000 only)
+#define DMC_FIRMWARE            	// Enable firmware updates (DMC-1200/DMC-1600/DMC-1700/DMC-1800/DMC-2000 only)
+#define DMC_DATARECORDACCESS   	 	// Enable data record access (DMC-1600/DMC-1700/DMC-1800 only)
+#define DMC_DATARECORDACCESSQR  	// Enable data record access for controllers which can use the QR command
+
+#ifdef __cplusplus
+   extern "C" {
+#endif
+
+
 
 /* Galil data types */
 

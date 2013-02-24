@@ -18,8 +18,8 @@
 
 
 /******[ includes ]**************************************************/
-#include "xps_ftp.h"
 #include <epicsExport.h>
+#include "xps_ftp.h"
 
 /* local functions */
 static int code(char*);

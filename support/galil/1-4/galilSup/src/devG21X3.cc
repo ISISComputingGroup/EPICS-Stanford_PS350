@@ -12,7 +12,6 @@
 #include 	<math.h>
 #include        <string.h>
 #include        <epicsMutex.h>
-#include        <epicsExport.h>
 #include        <epicsThread.h>
 #include        "motorRecord.h"
 #include        "motordevCom.h"
@@ -21,7 +20,19 @@
 #include 	"GalilInterface.h"
 #include        <errlog.h>
 
+#include        <epicsExport.h>
 
+#ifdef _WIN32
+/* rint and round are not exactly equivalent, but equivalent enough for our purposes */
+inline double round(double x) 
+{ 
+    return floor(x + 0.5); 
+}
+static double rint(double x) 
+{
+    return round(x);
+}
+#endif /* _WIN32 */
 
 #define STATIC static
 extern struct driver_table G21X3_access;
@@ -60,6 +71,7 @@ STATIC long G21X3_start_trans(struct motorRecord *);
 STATIC RTN_STATUS G21X3_build_trans(motor_cmnd, double *, struct motorRecord *);
 STATIC RTN_STATUS G21X3_end_trans(struct motorRecord *);
 
+extern "C" {
 struct motor_dset devG21X3 =
 {
     {8, NULL, (DEVSUPFUN)G21X3_init, (DEVSUPFUN)G21X3_init_record, NULL},
@@ -68,8 +80,9 @@ struct motor_dset devG21X3 =
     G21X3_build_trans,
     G21X3_end_trans
 };
-epicsExportAddress(dset,devG21X3);
 
+epicsExportAddress(dset,devG21X3);
+}
 
 /* --------------------------- program data --------------------- */
 /* This table is used to define the command types */
@@ -132,6 +145,9 @@ static double rel_dval;		  		/*stores relative move distance for next move */
 
 /* --------------------------- program data --------------------- */
 
+#ifdef ERROR
+#undef ERROR /* This is an enum in RTN_VALUES / RTN_STATUS from motor.h */
+#endif /* ERROR */
 
 
 /* initialize device support for G21X3 stepper motor */

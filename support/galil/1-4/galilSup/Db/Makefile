@@ -33,8 +33,8 @@ include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
 install: 
-	cp -f $(TOP)/galilSup/Db/galil_digital_out_bytes.req  $(TOP)/db/
-	cp -f $(TOP)/galilSup/Db/galil_analog.req  $(TOP)/db/
+	$(CP) -f $(TOP)/galilSup/Db/galil_digital_out_bytes.req  $(TOP)/db/
+	$(CP) -f $(TOP)/galilSup/Db/galil_analog.req  $(TOP)/db/
 
 
 

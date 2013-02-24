@@ -182,10 +182,12 @@ LONG FAR GALILCALL DMCRefreshDataRecord(HANDLEDMC hdmc, ULONG ulLength)
          controller[iIndex].usDataRecordSize);
 #endif /* DMC_DMA */
    }
+#ifdef DMC_PCI
 	else if (controller[iIndex].controllerinfo.hardwareinfo.businfo.fDataRecordAccess == DataRecordAccessFIFO)
-  {
+    {
 		return ioctl( controller[ iIndex ].iDriver, GALIL_PCI_GETFIFODR, controller[ iIndex ].pbDataRecord );
-	}		
+	}
+#endif /* DMC_PCI */
 	else if (controller[iIndex].controllerinfo.hardwareinfo.businfo.fDataRecordAccess == DataRecordAccessQR)
 	{
 		// STA: added 6/16/04

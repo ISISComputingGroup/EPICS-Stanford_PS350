@@ -42,15 +42,16 @@
 #include <link.h>
 #include <aiRecord.h>
 
-#include <epicsExport.h>
 #include "GalilInterface.h"
 
 #include <errlog.h>
+#include <epicsExport.h>
 
 static long init_ai(struct aiRecord *pai);
 static long read_ai(struct aiRecord *pai);
 static long special_linconv(struct aiRecord *pai, int after);
 
+extern "C" {
 struct	
 {
 	long		number;
@@ -71,6 +72,7 @@ struct
 		};
 
 epicsExportAddress(dset,devAiG21X3);
+}
 
 static long
 init_ai(struct aiRecord *pai)

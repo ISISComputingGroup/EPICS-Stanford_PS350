@@ -2,14 +2,19 @@
 #define INCLUDE_ETHERNET
 
 #include <sys/types.h>
+#ifdef _WIN32
+#include <winsock2.h>
+#else
 #include <sys/socket.h>
 #include <sys/select.h>
 #include <netinet/tcp.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
+#define MAKEWORD(a, b) ((WORD)(((UCHAR)(a)) | ((WORD)((UCHAR)(b))) << 8))
+#endif
 
-#ifndef SOCKET
+#if !defined(WIN32) && !defined(SOCKET)
    #define SOCKET int
 #endif
 
@@ -21,7 +26,6 @@
    #define SOCKET_ERROR -1
 #endif
 
-#define MAKEWORD(a, b) ((WORD)(((UCHAR)(a)) | ((WORD)((UCHAR)(b))) << 8))
 
 #define MAX_WINSOCK_UDP_WRITE       400
 #define MAX_WINSOCK_TCP_WRITE       400

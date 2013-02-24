@@ -2,6 +2,9 @@
 
 #ifdef DMC_ETHERNET
 
+#include <winsock2.h>
+#include <Ws2tcpip.h>
+
 long OpenSocket(int iIndex)
 {
    long            rc;
@@ -42,7 +45,7 @@ long OpenSocket(int iIndex)
 #ifdef DMC_DEBUG
       DMCTrace("Could not bind to socket. Return code <%ld>.\n", errno);
 #endif
-      close(controller[iIndex].socket);
+      closesocket(controller[iIndex].socket);
       return DMCERROR_DRIVER;
    }
 
@@ -91,7 +94,7 @@ long OpenSocket(int iIndex)
 #ifdef DMC_DEBUG
       DMCTrace("Could not connect to host address. Return code <%ld>.\n", errno);
 #endif
-      close(controller[iIndex].socket);
+      closesocket(controller[iIndex].socket);
       return DMCERROR_DRIVER;
    }
 
@@ -119,7 +122,7 @@ long OpenSocket(int iIndex)
 #ifdef DMC_DEBUG
       DMCTrace("Could not bind to multicast socket. Return code <%ld>.\n", errno);
 #endif
-      close(controller[iIndex].socketMulticast);
+      closesocket(controller[iIndex].socketMulticast);
       return DMCERROR_DRIVER;
    }
 
@@ -150,7 +153,7 @@ long OpenSocket(int iIndex)
 #ifdef DMC_DEBUG
       DMCTrace("Could not join to multicast group. Return code <%ld>.\n", errno);
 #endif
-      close(controller[iIndex].socketMulticast);
+      closesocket(controller[iIndex].socketMulticast);
       return DMCERROR_DRIVER;
    }
 
@@ -160,7 +163,7 @@ long OpenSocket(int iIndex)
 long CloseSocket(int iIndex)
 {
    shutdown(controller[iIndex].socket, 2);
-   close(controller[iIndex].socket);
+   closesocket(controller[iIndex].socket);
 
    return 0L;
 }
@@ -301,7 +304,7 @@ long ReadSocket(int iIndex, PCHAR pchResponse, ULONG cbResponse, PULONG pulBytes
    done = 0;
    while (done == 0)
    	{
-   	readrc = select(controller[iIndex].socket + 1, &ReadSet, NULL, NULL, &Timeout);
+   	readrc = select(controller[iIndex].socket + 1, &ReadSet, NULL, NULL, &Timeout);   /* nfds is ignored on windows */
 	if (readrc == SOCKET_ERROR)
 		done=(errno==EINTR) ? 0 : 1;
 	else
@@ -570,7 +573,7 @@ LONG FAR GALILCALL DMCAssignIPAddress(PCONTROLLERINFO pcontrollerinfo, int fVerb
 #endif
       if (fVerbose)
          printf("Could not bind to a Windows socket. Return code <%ld>.\n", errno);
-      close(sock);
+       closesocket(sock);
       return DMCERROR_DRIVER;
    }
 
@@ -582,7 +585,7 @@ LONG FAR GALILCALL DMCAssignIPAddress(PCONTROLLERINFO pcontrollerinfo, int fVerb
 #endif
       if (fVerbose)
          printf("Could not set socket options. Return code <%ld>.\n", errno);
-      close(sock);
+       closesocket(sock);
       return DMCERROR_DRIVER;
    }
 
@@ -690,7 +693,7 @@ LONG FAR GALILCALL DMCAssignIPAddress(PCONTROLLERINFO pcontrollerinfo, int fVerb
       }
    }
 
-   close(sock);
+    closesocket(sock);
 
    if (fVerbose && !bConfigured)
       printf("No Galil Ethernet controllers were configured.\n");
@@ -779,7 +782,7 @@ int WillReadBlock(SOCKET sock)
    done = 0;
    while (done == 0)
    	{
-   	rc = select(sock + 1, &ReadSet, NULL, NULL, &Timeout);
+   	rc = select(sock + 1, &ReadSet, NULL, NULL, &Timeout); /* nfds is ignored on windows */
 	if (rc == SOCKET_ERROR)
 		done=(errno==EINTR) ? 0 : 1;
 	else

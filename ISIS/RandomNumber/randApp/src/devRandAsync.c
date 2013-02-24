@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <epicsExport.h>
 #include <dbAccess.h>
 #include <devSup.h>
 #include <recSup.h>
@@ -7,6 +6,8 @@
 #include <callback.h>
 
 #include <aiRecord.h>
+
+#include <epicsExport.h>
 
 static long init_record(aiRecord *pao);
 static long read_ai(aiRecord *pao);
@@ -59,7 +60,7 @@ static long init_record(aiRecord *pao)
 
   priv->seed=start;
   pao->dpvt=priv;
-  srand(&priv->seed);
+  srand(priv->seed);
 
   return 0;
 }
