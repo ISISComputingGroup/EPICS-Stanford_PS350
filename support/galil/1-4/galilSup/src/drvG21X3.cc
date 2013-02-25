@@ -1210,11 +1210,12 @@ RTN_STATUS G21X3StartCard(int card, char *code_file, int eeprom_write,int displa
 	unsigned i,index;
 	int start_ok=1;					//Have the controller threads started ok
 	char c;						/*used when printing the uploaded and generated code*/
-	char galil_cmd_str[G21X3_LINE_LENGTH]="\0";	/*holds the assembled Galil cmd string*/
-	char buffer[G21X3_LINE_LENGTH] = "";		/* Response from Galil controller, used here to store command params */
+	char* galil_cmd_str = new char[G21X3_LINE_LENGTH];	/*holds the assembled Galil cmd string*/
+	*galil_cmd_str = '\0';
+	char* buffer = new char[G21X3_LINE_LENGTH];		/* Response from Galil controller, used here to store command params */
+	*buffer = '\0';
 	long rc=0;					/*Galil Command return code*/
-	char current_code[(G21X3_NUM_CHANNELS*(THREAD_CODE_LEN+LIMIT_CODE_LEN+INP_CODE_LEN))];
-	
+	char* current_code = new char[(G21X3_NUM_CHANNELS*(THREAD_CODE_LEN+LIMIT_CODE_LEN+INP_CODE_LEN))];
 	control = (struct G21X3controller *)motor_state[card]->DevicePrivate;
 	
 	/*First add termination code to end of code generated for this card*/
@@ -1382,6 +1383,9 @@ RTN_STATUS G21X3StartCard(int card, char *code_file, int eeprom_write,int displa
 		free(card_digital_code);
 		free(card_code);
 		}
+    delete[] current_code;	
+	delete[] buffer;
+	delete[] galil_cmd_str;
 	return (OK);
 }
 
@@ -3011,7 +3015,7 @@ void galil_write_gen_codefile(int card)
 void galil_read_codefile(int card,char *code_file)
 {
 	int i = 0;
-	char user_code[G21X3_NUM_CHANNELS*(THREAD_CODE_LEN+LIMIT_CODE_LEN+INP_CODE_LEN)];
+	char* user_code = new char[G21X3_NUM_CHANNELS*(THREAD_CODE_LEN+LIMIT_CODE_LEN+INP_CODE_LEN)];
 	char file[256];
 	FILE *fp;
 
@@ -3051,6 +3055,7 @@ void galil_read_codefile(int card,char *code_file)
 		else
 			errlogPrintf("\ngalil_read_codefile: Can't open user code file, using generated code\n\n");
 		}
+	delete []user_code;
 }
 
 /*-----------------------------------------------------------------------------------*/
