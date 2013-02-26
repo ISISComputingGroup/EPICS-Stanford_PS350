@@ -5,7 +5,8 @@ epics_base_path="${mydir}/base/${base_version}"
 export MY_EPICS_BASE="${epics_base_path}"
 . base/${base_version}/startup/Site.profile
 
-export MYPVPREFIX="${HOSTNAME}:${USER}:"
+SHORT_HOSTNAME=`hostname -s`
+export MYPVPREFIX="${SHORT_HOSTNAME}:${USER}:"
 
 # create include for path to EPICS_BASE
 set_epics_base="EPICS_BASE=${epics_base_path}"
