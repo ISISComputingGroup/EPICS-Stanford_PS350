@@ -10,17 +10,23 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-DB += galil_motor_withwrappers.substitutions
+#DB += galil_motor_withwrappers.substitutions
+DB += galil_motor_withwrappers.db
 
-DB += galil_motor_withoutwrappers.substitutions
+#DB += galil_motor_withoutwrappers.substitutions
+DB += galil_motor_withoutwrappers.db
 
-DB += galil_motor_extras.substitutions
+#DB += galil_motor_extras.substitutions
+DB += galil_motor_extras.db
 
-DB += galil_digital_ports.substitutions
+#DB += galil_digital_ports.substitutions
+DB += galil_digital_ports.db
 
-DB += galil_analog_ports.substitutions
+#DB += galil_analog_ports.substitutions
+DB += galil_analog_ports.db
 
-DB += galil_userdef_records.substitutions
+#DB += galil_userdef_records.substitutions
+DB += galil_userdef_records.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

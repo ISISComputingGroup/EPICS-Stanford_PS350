@@ -31,7 +31,7 @@
 # 800 Blackburn Road, Clayton, Victoria 3168, Australia.
 #
 
-file "db/galil_analog.template"
+file "$(TOP)/db/galil_analog.template"
 { 
    pattern { NAME,        FIELDDEV,   ISIGNAL,   OSIGNAL,  SCAN,           CARD, SIGNAL, IDESC, ODESC,	PREC	}
            { "SR00ID01",  "RIO01:",   "AI0",     "AO0",    "1 second",     "0",  "0",    "AI0", "AO0",	"2"	}

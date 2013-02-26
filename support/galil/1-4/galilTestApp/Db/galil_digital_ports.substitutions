@@ -31,64 +31,64 @@
 # 800 Blackburn Road, Clayton, Victoria 3168, Australia.
 #
 
-file "db/galil_digital_in_bytes.template"
+file "$(TOP)/db/galil_digital_in_bytes.template"
 { 
    pattern { NAME,             BYTEFUNC,         SCAN,           CARD, DESC}
-           { "MYLOCDEV",       "DMC01:DIGWORD",  "1 second",     "0",  "G21X3 byte in"  } 
+           { "$(PFIX)",       "DMC01:DIGWORD",  "1 second",     "0",  "G21X3 byte in"  } 
     
 }
 
 
-file "db/galil_digital_in_bits.template"
+file "$(TOP)/db/galil_digital_in_bits.template"
 {
    pattern { NAME,                FIELDDEV, BYTEFUNC,           BITNUM, BITFUNC,        SCAN,       DESC,                 ZNAM,  ZSV,        ONAM,  OSV                 }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "B0",   "DIGWORD_B0",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  } 
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "B1",   "DIGWORD_B1",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "B2",   "DIGWORD_B2",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "B3",   "DIGWORD_B3",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "B4",   "DIGWORD_B4",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "B5",   "DIGWORD_B5",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "B6",   "DIGWORD_B6",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "B7",   "DIGWORD_B7",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "B0",   "DIGWORD_B0",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  } 
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "B1",   "DIGWORD_B1",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "B2",   "DIGWORD_B2",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "B3",   "DIGWORD_B3",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "B4",   "DIGWORD_B4",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "B5",   "DIGWORD_B5",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "B6",   "DIGWORD_B6",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "B7",   "DIGWORD_B7",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
 
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "B8",   "DIGWORD_B8",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  } 
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "B9",   "DIGWORD_B9",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "BA",   "DIGWORD_BA",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "BB",   "DIGWORD_BB",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "BC",   "DIGWORD_BC",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "BD",   "DIGWORD_BD",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "BE",   "DIGWORD_BE",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
-    	   { "MYLOCDEV",          "DMC01:", "DMC01:DIGWORD",    "BF",   "DIGWORD_BF",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "B8",   "DIGWORD_B8",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  } 
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "B9",   "DIGWORD_B9",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "BA",   "DIGWORD_BA",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "BB",   "DIGWORD_BB",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "BC",   "DIGWORD_BC",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "BD",   "DIGWORD_BD",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "BE",   "DIGWORD_BE",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
+    	   { "$(PFIX)",          "DMC01:", "DMC01:DIGWORD",    "BF",   "DIGWORD_BF",   "1 second", "Spare Bi $(BITNUM)", "",    "",         "",    ""  }
 }
 
 
-file "db/galil_digital_out_bytes.template"
+file "$(TOP)/db/galil_digital_out_bytes.template"
 {
    pattern { NAME,                BYTEFUNC,         CARD, DESC}
-           { "MYLOCDEV",          "DMC01:DIGWORD",  "0",  "G21X3 byte out"  } 
+           { "$(PFIX)",          "DMC01:DIGWORD",  "0",  "G21X3 byte out"  } 
 }
 
 
-file "db/galil_digital_out_bits.template"
+file "$(TOP)/db/galil_digital_out_bits.template"
 {
    pattern { NAME,             FIELDDEV, BYTEFUNC,        BITNUM,  BITFUNC,        DESC}
-   	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "B0",    "DIGWORD_B0",   "Spare Bo $(BITNUM)"} 
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "B1",    "DIGWORD_B1",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "B2",    "DIGWORD_B2",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "B3",    "DIGWORD_B3",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "B4",    "DIGWORD_B4",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "B5",    "DIGWORD_B5",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "B6",    "DIGWORD_B6",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "B7",    "DIGWORD_B7",   "Spare Bo $(BITNUM)"}
+   	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "B0",    "DIGWORD_B0",   "Spare Bo $(BITNUM)"} 
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "B1",    "DIGWORD_B1",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "B2",    "DIGWORD_B2",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "B3",    "DIGWORD_B3",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "B4",    "DIGWORD_B4",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "B5",    "DIGWORD_B5",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "B6",    "DIGWORD_B6",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "B7",    "DIGWORD_B7",   "Spare Bo $(BITNUM)"}
 	
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "B8",    "DIGWORD_B8",   "Spare Bo $(BITNUM)"} 
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "B9",    "DIGWORD_B9",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "BA",    "DIGWORD_BA",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "BB",    "DIGWORD_BB",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "BC",    "DIGWORD_BC",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "BD",    "DIGWORD_BD",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "BE",    "DIGWORD_BE",   "Spare Bo $(BITNUM)"}
-	   { "MYLOCDEV",       "DMC01:", "DMC01:DIGWORD", "BF",    "DIGWORD_BF",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "B8",    "DIGWORD_B8",   "Spare Bo $(BITNUM)"} 
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "B9",    "DIGWORD_B9",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "BA",    "DIGWORD_BA",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "BB",    "DIGWORD_BB",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "BC",    "DIGWORD_BC",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "BD",    "DIGWORD_BD",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "BE",    "DIGWORD_BE",   "Spare Bo $(BITNUM)"}
+	   { "$(PFIX)",       "DMC01:", "DMC01:DIGWORD", "BF",    "DIGWORD_BF",   "Spare Bo $(BITNUM)"}
 }
 
 

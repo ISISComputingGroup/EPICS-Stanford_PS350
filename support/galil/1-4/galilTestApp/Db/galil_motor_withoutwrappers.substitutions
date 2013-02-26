@@ -27,7 +27,7 @@
 # 800 Blackburn Road, Clayton, Victoria 3168, Australia.
 #
 
-file "db/galil_motor_withoutwrappers.template"
+file "$(TOP)/db/galil_motor_withoutwrappers.template"
 {
 pattern
 {   KitName    ,MotorName,   C,  S, EGU,  VELO,  VMAX,  ACCL,  BDST,  BVEL,  BACC,  MRES, SREV, ERES,  PREC, DHLM,    DLLM,     OFF,     UEIP, RTRY}

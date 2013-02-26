@@ -16,19 +16,23 @@ galilTest_registerRecordDeviceDriver(pdbbase)
 #Choose 1 out of the 2 dbLoadTemplate statements below for your application
 
 #dbLoadTemplate("db/galil_motor_withoutwrappers.substitutions")
-dbLoadTemplate("db/galil_motor_withwrappers.substitutions")
+#dbLoadTemplate("db/galil_motor_withwrappers.substitutions")
+dbLoadRecords("db/galil_motor_withwrappers.db","PFIX=$(MYPVPREFIX)")
 
 #Load extra functionality, untop of motorRecord features for axis/motors (eg. runtime gear ratio changes between master & slaves)
-dbLoadTemplate("db/galil_motor_extras.substitutions")
+#dbLoadTemplate("db/galil_motor_extras.substitutions")
+dbLoadRecords("db/galil_motor_extras.db","PFIX=$(MYPVPREFIX)")
 
 #Load digital IO databases
-dbLoadTemplate("db/galil_digital_ports.substitutions")
+#dbLoadTemplate("db/galil_digital_ports.substitutions")
+dbLoadRecords("db/galil_digital_ports.db","PFIX=$(MYPVPREFIX)")
 
 #Load analog IO databases
 #dbLoadTemplate("db/galil_analog_ports.substitutions")
 
 #Load user defined functions
-dbLoadTemplate("db/galil_userdef_records.substitutions")
+#dbLoadTemplate("db/galil_userdef_records.substitutions")
+dbLoadRecords("db/galil_userdef_records.db","PFIX=$(MYPVPREFIX)")
 
 #Number of cards in system, and scan rate
 #
@@ -61,7 +65,7 @@ G21X3Setup(1,60)
 # Cardnumber starting from 0, ip, totalaxis used, model_num, limit switch type (-1 normally closed, 1 NOpen), home switch type (-1 normally closed, 1 NOpen)
 #Controller home direction (-1 reverse, 1 Forward)
 #
-G21X3Config(0,"10.22.206.207",8,2100,-1,-1,-1)
+G21X3Config(0,"130.246.51.169",8,2100,1,1,-1)
 
 # In the G21X3NameConfig command, the parameters are:
 #
@@ -160,10 +164,10 @@ G21X3NameConfig(0,"A",3,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,
 G21X3NameConfig(0,"B",3,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,0.001,.110)
 G21X3NameConfig(0,"C",3,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,0.001,.110)
 G21X3NameConfig(0,"D",3,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,0.001,.110)
-G21X3NameConfig(0,"E",3,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,0.001,.110)
-G21X3NameConfig(0,"F",3,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,0.001,.110)
-G21X3NameConfig(0,"G",3,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,0.001,.110)
-G21X3NameConfig(0,"H",3,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,0.001,.110)
+G21X3NameConfig(0,"E",0,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,0.001,.110)
+G21X3NameConfig(0,"F",0,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,0.001,.110)
+G21X3NameConfig(0,"G",0,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,0.001,.110)
+G21X3NameConfig(0,"H",0,-1,0,0.0,1,-1,-1,0,25,13,0,13,1,1,0.000001,"",0,1,0,0,1,0.001,.110)
 
 # In the G21X3StartCard command, the parameters are:
 #

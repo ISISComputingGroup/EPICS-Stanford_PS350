@@ -38,7 +38,7 @@
 # DRVCMD = CMD (GalilStr is a galil command)
 
 
-file "db/galil_userdef_records.template"
+file "$(TOP)/db/galil_userdef_records.template"
 {
 pattern
 { KitName   ,      EPICSName,            GalilStr, DRVCMD, SCAN,        DRVL, DRVH, LOW,  HIGH, LSV,     HSV,     ZNAM,      ONAM,  ZSV,        OSV,        C, DEFAULT, EGU,  PINI}
