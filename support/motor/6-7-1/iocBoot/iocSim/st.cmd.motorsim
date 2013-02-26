@@ -1,13 +1,14 @@
 # The is the ASYN example for communication to 4 simulated motors
 # "#!" marks lines that can be uncommented.
 #
-# run with ../../bin/${EPICS_HOST_ARCH}/WithASYN.exe
+# run with ../../bin/${EPICS_HOST_ARCH}/motorSim.exe
 
 < envPaths
 
-dbLoadDatabase("$(TOP)/dbd/WithAsyn.dbd")
-WithAsyn_registerRecordDeviceDriver(pdbbase)
-
+#dbLoadDatabase("$(TOP)/dbd/WithAsyn.dbd")
+#WithAsyn_registerRecordDeviceDriver(pdbbase)
+dbLoadDatabase("$(TOP)/dbd/motorSim.dbd")
+motorSim_registerRecordDeviceDriver(pdbbase)
 dbLoadTemplate("motor.substitutions.local")
 
 # Create simulated motors: ( start card , start axis , low limit, high limit, home posn, # cards, # axes to setup)

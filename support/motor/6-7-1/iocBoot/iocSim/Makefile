@@ -5,5 +5,10 @@ ARCH = $(EPICS_HOST_ARCH)
 #ARCH = vxWorks-ppc604
 TARGETS = cdCommands
 TARGETS += envPaths
+TARGETS += motor.substitutions.local
+
+motor.substitutions.local : motor.substitutions
+	$(MSI) -M "IOC=$(MYPVPREFIX)" -o $@ $<
+
 include $(TOP)/configure/RULES.ioc
 
