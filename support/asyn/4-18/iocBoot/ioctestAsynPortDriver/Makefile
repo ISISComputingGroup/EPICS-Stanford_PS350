@@ -1,6 +1,6 @@
 TOP = ../..
 
-ARCH = vxWorks-ppc603
+ARCH = $(EPICS_HOST_ARCH)
 TARGETS = cdCommands envPaths
 
 include $(TOP)/configure/CONFIG
