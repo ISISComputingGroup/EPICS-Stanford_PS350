@@ -12,8 +12,8 @@ dbLoadDatabase "dbd/rand.dbd"
 rand_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
-dbLoadRecords("db/rand.db","P=test:rand, D=Random, S=324235")
-dbLoadRecords("db/rand.db","P=test:randasync,D=Random Async,S=324235")
+dbLoadRecords("db/rand.db","P=$(MYPVPREFIX)rand, D=Random, S=324235")
+dbLoadRecords("db/rand.db","P=$(MYPVPREFIX)randasync,D=Random Async,S=324235")
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit

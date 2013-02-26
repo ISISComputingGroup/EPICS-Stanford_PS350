@@ -20,5 +20,5 @@
 file $(EUROTHERM2K)/db/eurotherm2k.template
 {
 pattern { P, Q, PORT, GAD, LAD, SPMAX, RRMAX, SPCMD, PREC, EGU, gda_name, gda_desc }
-    { "EUROTHERM2K", "", "eurothermAsyn", "0", "1", "1000", "1", "writeint", "0", "C/s", "", "" }
+    { "$(PFIX)EUROTHERM2K", "", "eurothermAsyn", "0", "1", "1000", "1", "writeint", "0", "C/s", "", "" }
 }

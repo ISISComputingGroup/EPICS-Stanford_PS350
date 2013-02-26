@@ -32,5 +32,5 @@ epicsEnvSet "STREAM_PROTOCOL_PATH", "$(EUROTHERM2K)/eurotherm2kApp/protocol"
 # Final ioc initialisation
 # ------------------------
 cd "$(INSTALL)"
-dbLoadRecords 'db/example_expanded.db'
+dbLoadRecords 'db/example_expanded.db', "PFIX=$(MYPVPREFIX)"
 iocInit
