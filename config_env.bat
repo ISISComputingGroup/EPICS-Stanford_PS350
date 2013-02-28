@@ -1,3 +1,5 @@
+@echo off
+
 set MYDIR=%~dp0
 
 set BASE_VERSION=3.14.12.2
@@ -5,10 +7,17 @@ set EPICS_BASE=%MYDIR%base\%BASE_VERSION%
 
 set MYPVPREFIX=%COMPUTERNAME%:%USERNAME%:
 
+@echo ### $Id$ ###
+@echo Using EPICS base %BASE_VERSION% and setting PV prefix to "%MYPVPREFIX%"
+
 call %EPICS_BASE%\startup\win32.bat
 
 REM utils (make, sed etc.)
-set PATH=%MYDIR%utils_win32;c:\strawberry\perl\bin;%PATH%
+set PATH=%MYDIR%utils_win32;%PATH%
+
+REM perl
+if exist "c:\strawberry\perl\bin\perl.exe" set PATH=c:\strawberry\perl\bin;%PATH%
+if exist "c:\strawberry\perl\perl\bin\perl.exe" set PATH=c:\strawberry\perl\perl\bin;%PATH%
 
 REM epics base and extensions
 set PATH=%EPICS_BASE%\bin\%EPICS_HOST_ARCH%;%PATH%
