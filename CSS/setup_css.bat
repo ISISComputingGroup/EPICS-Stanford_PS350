@@ -1,8 +1,7 @@
 @echo off
 set MYDIR=%~dp0
-set CSS_DIR=c:\isis_css
-md %CSS_DIR%
-cd /d %CSS_DIR%
-unzip -q %MYDIR%Binaries\css-win.x86_64.zip
-copy /y %MYDIR%\Config\settings.ini .
-echo %CSS_DIR%\CSS\css.exe -pluginCustomization %CSS_DIR%\CSS\settings.ini > css.bat
+set CSS_NAME=css-win.x86_64
+md %MYDIR%Workspaces
+md %MYDIR%%CSS_NAME%
+cd /d %MYDIR%%CSS_NAME%
+unzip -q %MYDIR%Binaries\%CSS_NAME%.zip

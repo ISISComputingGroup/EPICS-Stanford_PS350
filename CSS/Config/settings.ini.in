@@ -45,24 +45,25 @@ org.csstudio.ui.menu.web/css=CSS|http://ics-web.sns.ornl.gov/css
 
 
 ## EMail (SMTP)
-org.csstudio.email/smtp_host=smtp.my_site.org
+org.csstudio.email/smtp_host=exchsmtp.stfc.ac.uk
 
 
 ## Channel Access
-org.csstudio.platform.libs.epics/auto_addr_list=false
+org.csstudio.platform.libs.epics/auto_addr_list=true
 org.csstudio.platform.libs.epics/use_pure_java=true
-org.csstudio.platform.libs.epics/addr_list=127.0.0.1 172.23.244.65
+org.csstudio.platform.libs.epics/addr_list=127.0.0.1 130.246.51.255 130.246.55.255 130.246.39.255
 org.csstudio.platform.libs.epics/max_array_bytes=460000
 
 
 ## OPI/BOY
-org.csstudio.opibuilder/color_file=/BOY Examples/color.def
-org.csstudio.opibuilder/font_file=/BOY Examples/font.def
+org.csstudio.opibuilder/color_file=/CSS/Share/color.def
+org.csstudio.opibuilder/font_file=/CSS/Share/font.def
 org.csstudio.opibuilder/schema_opi=
-org.csstudio.opibuilder/top_opis=/BOY Examples/main.opi
+org.csstudio.opibuilder/top_opis=/CSS/Share/main.opi
 # Predefined macros, format
 # macro1,value1|macro2,"value 2"|macro3,"another value"
-org.csstudio.opibuilder/macros=user,demo
+# MYPVPREFIX is substituted from config_env.bat
+org.csstudio.opibuilder/macros=user,demo|P,MYPVPREFIX|M1,m1|M2,m2|M3,m3|M4,m4|M5,m5|M6,m6|M7,m7|M8,m8
 
 
 ## (No) Authentication
