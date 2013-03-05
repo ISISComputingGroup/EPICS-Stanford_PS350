@@ -222,7 +222,7 @@ record(mbbi, "$(P)$(Q):ERR") {
 record(bo, "$(P)$(Q):DISABLE") {
   field(DESC, "Disable comms")
   field(PINI, "YES")
-  field(VAL, "1")
+  field(VAL, "0")
   field(OMSL, "supervisory")
   field(ZNAM, "Enabled")
   field(ONAM, "Disabled")
