@@ -1,10 +1,12 @@
-@echo off
-set MYLOCDIR=%~dp0
-set CSS_NAME=css-win.x86_64
-set CSS_DIR=%MYLOCDIR%%CSS_NAME%
-set CSS_SHARE=%MYLOCDIR%Share
-REM this defines MYDIR
-call %MYLOCDIR%..\config_env.bat
-start /min caRepeater.exe
-cd /d %MYLOCDIR%Workspaces
-%CSS_DIR%\CSS\css.exe -pluginCustomization %MYLOCDIR%Config\settings.ini -share_link %CSS_SHARE%=/CSS/Share -data %MYLOCDIR%Workspaces\motors --launcher.openFile "%MYLOCDIR%\Share\motor_opi\topMotors4.opi"
+#!/bin/sh
+SCRIPT=$(readlink -f ${BASH_SOURCE[0]})
+SCRIPTPATH=`dirname "$SCRIPT"`
+MYLOCDIR="$SCRIPTPATH"
+CSS_NAME=css-linux.x86_64
+CSS_DIR=${MYLOCDIR}/${CSS_NAME}
+CSS_SHARE=${MYLOCDIR}/Share
+# this defines MYDIR
+. ${MYLOCDIR}/../config_env.sh
+caRepeater &
+cd ${MYLOCDIR}/Workspaces
+${CSS_DIR}/CSS/css -pluginCustomization ${MYLOCDIR}/Config/settings.ini -share_link ${CSS_SHARE}=/CSS/Share -data ${MYLOCDIR}/Workspaces/motors --launcher.openFile "${MYLOCDIR}/Share/motor_opi/topMotors4.opi"

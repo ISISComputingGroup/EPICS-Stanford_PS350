@@ -1,9 +1,11 @@
 #!/bin/sh
-mydir="`pwd`"
+SCRIPT=$(readlink -f ${BASH_SOURCE[0]})
+SCRIPTPATH=`dirname "$SCRIPT"`
+mydir="$SCRIPTPATH"
 base_version="3.14.12.2"
 epics_base_path="${mydir}/base/${base_version}"
 export MY_EPICS_BASE="${epics_base_path}"
-. base/${base_version}/startup/Site.profile
+. ${mydir}/base/${base_version}/startup/Site.profile
 
 SHORT_HOSTNAME=`hostname -s`
 export MYPVPREFIX="${SHORT_HOSTNAME}:${USER}:"
