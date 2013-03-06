@@ -38,11 +38,14 @@ set PATH=%MYDIR%support\galil\1-4\bin\%EPICS_HOST_ARCH%;%PATH%
 set PATH=%MYDIR%support\eurotherm2k\1-11\bin\%EPICS_HOST_ARCH%;%PATH%
 
 REM POCO 
-set PATH=%MYDIR%Third_Party\POCO\bin_x64;%PATH%
+REM set PATH=%MYDIR%Third_Party\POCO\bin_x64;%PATH%
 
 REM create include for path to EPICS_BASE
 echo EPICS_BASE=%EPICS_BASE%> %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
 echo SUPPORT=%MYDIR%support>> %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
+
+REM we only have ATL is we use full Visual studio, not express
+if exist "%VCINSTALLDIR%atlmfc\include" echo HAVE_ATL=YES>> %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
 
 REM echo INSTALL_LOCATION=%MYDIR%install>> %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
 REM echo INSTALL_LOCATION_APP=%MYDIR%install>> %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%

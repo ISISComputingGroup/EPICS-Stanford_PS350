@@ -8,7 +8,9 @@ DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocBoot))
 # extra ones #
 MODULES = RandomNumber
 ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
-#MODULES += lvExportApp isisepicsApp
+ifeq ($(HAVE_ATL),YES)
+MODULES += isisepicsApp lvDCOM
+endif
 endif
 DIRS := $(MODULES) $(DIRS)
 ##############
