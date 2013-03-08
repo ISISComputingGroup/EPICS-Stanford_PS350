@@ -2,10 +2,10 @@
 SCRIPT=$(readlink -f ${BASH_SOURCE[0]})
 SCRIPTPATH=`dirname "$SCRIPT"`
 mydir="$SCRIPTPATH"
-base_version="3.14.12.2"
-epics_base_path="${mydir}/base/${base_version}"
+export EPICS_BASE_VERSION="3-14-12-2"
+epics_base_path="${mydir}/base/${EPICS_BASE_VERSION}"
 export MY_EPICS_BASE="${epics_base_path}"
-. ${mydir}/base/${base_version}/startup/Site.profile
+. ${mydir}/base/${EPICS_BASE_VERSION}/startup/Site.profile
 
 SHORT_HOSTNAME=`hostname -s`
 export MYPVPREFIX="${SHORT_HOSTNAME}:${USER}:"
