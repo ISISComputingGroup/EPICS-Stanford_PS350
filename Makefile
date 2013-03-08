@@ -1,10 +1,16 @@
-SUBDIRS=base base_examples extensions support ISIS
+TOP = ./extensions
+include $(TOP)/configure/CONFIG
 
-all : ISIS_CONFIG.$(EPICS_HOST_ARCH) $(SUBDIRS) base_examples
+DIRS = base base_examples extensions support ISIS
 
-extensions : base
-support : base
-ISIS : support
+DIRS := $(wildcard $(DIRS))
+
+base_examples_DEPENDS_DIRS = base
+extensions_DEPENDS_DIRS = base
+support_DEPENDS_DIRS = base
+ISIS_DEPENDS_DIRS = support
+
+all : ISIS_CONFIG.$(EPICS_HOST_ARCH)
 
 #
 # check if we need to re-fun config_env
@@ -17,12 +23,6 @@ ISIS_CONFIG.$(EPICS_HOST_ARCH) : config_env.bat
 	$(error You need to re-run   config_env.bat   first)
 endif
 
-#MAKEBASEAPP=.\base\bin\${EPICS_HOST_ARCH}\makeBaseApp.pl
-#aaa : base
-#	cd base_examples#
-#	perl $(MAKEBASEAPP) -t example example
-#	perl $(MAKEBASEAPP) -i -p example -t example example
-#	perl $(MAKEBASEAPP) -t caClient caClient
-#	cd ..
+ACTIONS += uninstall kit
 
-include Makefile.rules
+include $(TOP)/configure/RULES_DIRS

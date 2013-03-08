@@ -2,13 +2,13 @@
 
 set MYDIR=%~dp0
 
-set BASE_VERSION=3.14.12.2
-set EPICS_BASE=%MYDIR%base\%BASE_VERSION%
+set EPICS_BASE_VERSION=3-14-12-2
+set EPICS_BASE=%MYDIR%base\%EPICS_BASE_VERSION%
 
 set MYPVPREFIX=%COMPUTERNAME%:%USERNAME%:
 
 @echo ### $Id$ ###
-@echo Using EPICS base %BASE_VERSION% and setting PV prefix to "%MYPVPREFIX%"
+@echo Using EPICS base %EPICS_BASE_VERSION% and setting PV prefix to "%MYPVPREFIX%"
 
 call %EPICS_BASE%\startup\win32.bat
 

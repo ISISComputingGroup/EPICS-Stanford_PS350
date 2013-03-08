@@ -1,5 +1,10 @@
-SUBDIRS=3.14.12.2
+TOP = ../extensions
+include $(TOP)/configure/CONFIG
 
-all : $(SUBDIRS)
+ACTIONS += uninstall kit
 
-include ../Makefile.rules
+DIRS = $(EPICS_BASE_VERSION)
+
+DIRS := $(wildcard $(DIRS))
+
+include $(TOP)/configure/RULES_DIRS

@@ -1,5 +1,10 @@
-SUBDIRS=4-18
+TOP = ../../extensions
+include $(TOP)/configure/CONFIG
 
-all : $(SUBDIRS)
+ACTIONS += uninstall kit
 
-include ../../Makefile.rules
+DIRS = 4-18
+
+DIRS := $(wildcard $(DIRS))
+
+include $(TOP)/configure/RULES_DIRS

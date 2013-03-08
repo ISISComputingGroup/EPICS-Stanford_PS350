@@ -5,9 +5,11 @@ ifneq ($(findstring windows,$(EPICS_HOST_ARCH)),)
 COMMAND=generate_examples.bat
 endif
 
-all :
+install :
 	$(COMMAND) $(EPICS_BASE)
 	
 clean :
 
 uninstall :
+
+kit :

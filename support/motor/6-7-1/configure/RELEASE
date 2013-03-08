@@ -19,7 +19,7 @@ ASYN=$(SUPPORT)/asyn/4-18
 
 # Need the sequencer and the bust record for the MM4005 and XPS trajectory scanning
 # Recommended SNCSEQ release: R2-1-13
-SNCSEQ=$(SUPPORT)/seq/2.1.11
+SNCSEQ=$(SUPPORT)/seq/2-1-11
 BUSY=$(SUPPORT)/busy/1-4
 
 # Recommended EPICS release: R3.14.12.1
@@ -34,7 +34,7 @@ EPICS_BASE=
 # <motor>/Makefile must also be edited.
 
 # Recommended IPAC release: R2-11
-IPAC=$(SUPPORT)/ipac/2.11
+IPAC=$(SUPPORT)/ipac/2-11
 
 # The following is only needed for the motor examples in iocBoot.
 MOTOR=$(SUPPORT)/motor/6-7-1
