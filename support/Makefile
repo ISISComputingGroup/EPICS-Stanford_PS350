@@ -7,6 +7,9 @@ DIRS=seq ipac sscan calc asyn busy ip motor galil pcre StreamDevice eurotherm2k
 ifeq ($(findstring windows,$(EPICS_HOST_ARCH)),) 
 #DIRS += galil 
 endif  
+ifneq ($(findstring win32-x86,$(EPICS_HOST_ARCH)),) 
+DIRS += HVCAENx527
+endif
 asyn_DEPENDS_DIRS = ipac seq
 busy_DEPENDS_DIRS = asyn
 calc_DEPENDS_DIRS = sscan
