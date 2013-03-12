@@ -10,6 +10,9 @@ endif
 ifneq ($(findstring win32-x86,$(EPICS_HOST_ARCH)),) 
 DIRS += HVCAENx527
 endif
+ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),) 
+DIRS += HVCAENx527
+endif
 asyn_DEPENDS_DIRS = ipac seq
 busy_DEPENDS_DIRS = asyn
 calc_DEPENDS_DIRS = sscan
