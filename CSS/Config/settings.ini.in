@@ -75,17 +75,18 @@ org.csstudio.platform.jaasAuthentication/jaas_config_file_entry=Dummy
 # Removal of these settings results in empty defaults
 # URLs to suggest in the "Archives" view
 # SNS 'Office' users use CMAN
-org.csstudio.trends.databrowser2/urls=jdbc:mysql://172.23.244.65/archive*xnds://ics-srv-testf1.sns.ornl.gov/archive/cgi/ArchiveDataServer.cgi
+#org.csstudio.trends.databrowser2/urls=jdbc:mysql://172.23.244.65/archive*xnds://ics-srv-testf1.sns.ornl.gov/archive/cgi/ArchiveDataServer.cgi
+org.csstudio.trends.databrowser2/urls=jdbc:mysql://130.246.55.141/archive
 
 # Default data sources for newly added channels
 # Format:  <name>|<key>|<url>
 # xnds: URLs use the key. Other URLs might ignore the key.
-org.csstudio.trends.databrowser2/archives=RDB|1|jdbc:mysql://172.23.244.65/archive
+org.csstudio.trends.databrowser2/archives=RDB|1|jdbc:mysql://130.246.55.141/archive
 org.csstudio.trends.databrowser2/use_default_archives=false
 org.csstudio.trends.databrowser2/archive_rescale=STAGGER
 
 # RDB used for archive
-org.csstudio.archive.rdb/url=jdbc:mysql://172.23.244.65/archive?rewriteBatchedStatements=true
+org.csstudio.archive.rdb/url=jdbc:mysql://130.246.55.141/archive?rewriteBatchedStatements=true
 org.csstudio.archive.rdb/user=archive
 org.csstudio.archive.rdb/password=$archive
 org.csstudio.archive.rdb/schema=
@@ -93,27 +94,27 @@ org.csstudio.archive.rdb/use_array_blob=true
 org.csstudio.archive.reader.rdb/use_stored_procedure=
 
 # Alarm RDB (Config Tool, Alarm Server)
-org.csstudio.alarm.beast/rdb_url=jdbc:mysql://172.23.244.65/ALARM
+org.csstudio.alarm.beast/rdb_url=jdbc:mysql://130.246.55.141/ALARM
 org.csstudio.alarm.beast/rdb_user=alarm
 org.csstudio.alarm.beast/rdb_password=$alarm
 org.csstudio.alarm.beast/rdb_schema=
 
 # JMS Connection
-org.csstudio.alarm.beast/jms_url=failover:(tcp://172.23.244.65:61616)
+org.csstudio.alarm.beast/jms_url=failover:(tcp://130.246.55.141:61616)
 
 # Specify alarm configuration (root element)
 org.csstudio.alarm.beast/root_component=Demo
 # Annunciator
-org.csstudio.alarm.beast.annunciator/jms_url=failover:(tcp://172.23.244.65:61616)
+org.csstudio.alarm.beast.annunciator/jms_url=failover:(tcp://130.246.55.141:61616)
 org.csstudio.alarm.beast.annunciator/jms_topic=Demo_TALK
 
-org.csstudio.alarm.beast.msghist/rdb_url=jdbc:mysql://172.23.244.65/log
+org.csstudio.alarm.beast.msghist/rdb_url=jdbc:mysql://130.246.55.141/log
 org.csstudio.alarm.beast.msghist/rdb_user=log
 org.csstudio.alarm.beast.msghist/rdb_password=$log
 org.csstudio.alarm.beast.msghist/rdb_schema=
 org.csstudio.alarm.beast.ui.areapanel/columns=4
 
 ## JMS Monitor
-org.csstudio.debugging.jmsmonitor/jms_url=failover:(tcp://172.23.244.65:61616)?randomize=false
+org.csstudio.debugging.jmsmonitor/jms_url=failover:(tcp://130.246.55.141:61616)?randomize=false
 
 
