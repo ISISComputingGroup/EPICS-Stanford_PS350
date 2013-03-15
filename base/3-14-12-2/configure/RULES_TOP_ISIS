@@ -16,11 +16,11 @@ KIT_BASE=$(subst \,/,$(KIT_ROOT))
 INSTALL_PREFIX=$(subst $(KIT_BASE),,$(abspath .))
 
 # we need to remove ./ to match the wildcard *
-INSTALL_SRC=$(addprefix ./$(INSTALL_PREFIX)/,$(filter $(subst ./,,$(INSTALL_LOCATION_BIN)) $(subst ./,,$(INSTALL_DBD)) $(subst ./,,$(INSTALL_DB)) iocBoot,$(wildcard *)))
+INSTALL_SRC = $(addprefix ./$(INSTALL_PREFIX)/,$(filter $(subst ./,,$(INSTALL_LOCATION_BIN)) $(subst ./,,$(INSTALL_DBD)) $(subst ./,,$(INSTALL_DB)) iocBoot,$(wildcard *)))
+# linux puts runtime libraries into lib rather than bin
+ifneq ($(findstring linux,$(EPICS_HOST_ARCH)),) 
+    INSTALL_SRC += $(addprefix ./$(INSTALL_PREFIX)/,$(filter $(subst ./,,$(INSTALL_LOCATION_LIB)),$(wildcard *)))
+endif
 
 zip :
-	$(ECHO) $(KIT_ROOT)
-	$(ECHO) $(abspath $(EPICS_BASE)/../.. )
-	$(ECHO) $(abspath .)
-	$(ECHO) $(INSTALL_PREFIX)
 	cd $(KIT_BASE) && $(INSTALL_KIT_CMD) $(INSTALL_KIT) $(INSTALL_SRC)

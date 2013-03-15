@@ -7,6 +7,8 @@ epics_base_path="${mydir}/base/${EPICS_BASE_VERSION}"
 export MY_EPICS_BASE="${epics_base_path}"
 . ${mydir}/base/${EPICS_BASE_VERSION}/startup/Site.profile
 
+export KIT_ROOT="${mydir}"
+
 SHORT_HOSTNAME=`hostname -s`
 export MYPVPREFIX="${SHORT_HOSTNAME}:${USER}:"
 
