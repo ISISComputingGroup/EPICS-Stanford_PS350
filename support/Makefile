@@ -1,7 +1,7 @@
 TOP = ../extensions
 include $(TOP)/configure/CONFIG
 
-ACTIONS += uninstall kit
+ACTIONS += uninstall kit zip
 
 DIRS=seq ipac sscan calc asyn busy ip motor galil pcre StreamDevice eurotherm2k
 ifeq ($(findstring windows,$(EPICS_HOST_ARCH)),) 

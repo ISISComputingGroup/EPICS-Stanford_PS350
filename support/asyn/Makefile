@@ -1,7 +1,7 @@
 TOP = ../../extensions
 include $(TOP)/configure/CONFIG
 
-ACTIONS += uninstall kit
+ACTIONS += uninstall kit zip
 
 DIRS = 4-18
 

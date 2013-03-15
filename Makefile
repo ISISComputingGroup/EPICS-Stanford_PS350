@@ -23,6 +23,6 @@ ISIS_CONFIG.$(EPICS_HOST_ARCH) : config_env.bat
 	$(error You need to re-run   config_env.bat   first)
 endif
 
-ACTIONS += uninstall kit
+ACTIONS += uninstall kit zip
 
 include $(TOP)/configure/RULES_DIRS

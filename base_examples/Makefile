@@ -16,3 +16,5 @@ clean :
 uninstall :
 
 kit :
+
+zip :
