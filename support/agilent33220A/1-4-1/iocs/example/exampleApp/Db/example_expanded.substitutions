@@ -13,5 +13,5 @@
 file $(AGILENT33220A)/db/agilent33220A.template
 {
 pattern { P, Q, PORT, name, gda_desc }
-    { "TESTFUNC", "", "FUNC", "FGEN", "Function Generator" }
+    { "$(PFIX)AGIFUNC", "", "FUNC", "FGEN", "Function Generator" }
 }

@@ -11,6 +11,7 @@ DBD += example.dbd
 example_DBD += base.dbd
 example_DBD += asyn.dbd
 example_DBD += drvAsynIPPort.dbd
+example_DBD += drvAsynSerialPort.dbd
 example_DBD += stream.dbd
 example_DBD += busySupport.dbd
 example_SRCS += example_registerRecordDeviceDriver.cpp

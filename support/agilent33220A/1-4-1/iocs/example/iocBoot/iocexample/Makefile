@@ -6,9 +6,12 @@
 TOP = ../..
 include $(TOP)/configure/CONFIG
 
+ARCH=$(EPICS_HOST_ARCH)
+
 SCRIPTS += ../stexample.sh
 #SCRIPTS += stexample.boot
 PATH := $(PATH):/dls_sw/epics/R3.14.11/extensions/bin/linux-x86
+TARGETS += envPaths 
 
-include $(TOP)/configure/RULES
+include $(TOP)/configure/RULES.ioc
 
