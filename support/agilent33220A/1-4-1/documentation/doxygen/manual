@@ -1,0 +1,11 @@
+/**
+\mainpage agilent33220A EPICS Support Module
+\section intro_sec Introduction
+This module contains streamDevice support for the agilent 33220A function generator. 
+
+\section build_sec Build Instructions 
+- \subpage build_instructions_example
+
+IOCs build using these build instructions are available in iocs/
+**/
+
