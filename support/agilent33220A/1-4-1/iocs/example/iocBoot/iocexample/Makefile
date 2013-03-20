@@ -7,7 +7,7 @@ TOP = ../..
 include $(TOP)/configure/CONFIG
 
 SCRIPTS += ../stexample.sh
-SCRIPTS += stexample.boot
+#SCRIPTS += stexample.boot
 PATH := $(PATH):/dls_sw/epics/R3.14.11/extensions/bin/linux-x86
 
 include $(TOP)/configure/RULES

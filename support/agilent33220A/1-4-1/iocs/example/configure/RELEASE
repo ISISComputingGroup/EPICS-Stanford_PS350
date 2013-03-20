@@ -8,8 +8,11 @@ SUPPORT = /dls_sw/prod/R3.14.11/support
 WORK = /dls_sw/work/R3.14.11/support
 # Module paths
 AGILENT33220A = $(SUPPORT)/agilent33220A/1-4-1
-ASYN = $(SUPPORT)/asyn/4-14
-BUSY = $(SUPPORT)/busy/1-3dls3
-STREAMDEVICE = $(SUPPORT)/streamDevice/2-4dls6
+ASYN = $(SUPPORT)/asyn/4-18
+BUSY = $(SUPPORT)/busy/1-4
+STREAMDEVICE = $(SUPPORT)/StreamDevice
+PCRE=$(SUPPORT)/pcre
 # EPICS Base appears last
 EPICS_BASE = /dls_sw/epics/R3.14.11/base
+
+include $(TOP)/../../../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)

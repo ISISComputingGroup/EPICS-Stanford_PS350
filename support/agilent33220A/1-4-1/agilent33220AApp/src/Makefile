@@ -41,13 +41,13 @@ agilent33220A_SRCS += agilent33220A_registerRecordDeviceDriver.cpp
 
 # These two lines are needed for non-vxWorks builds, such as Linux
 agilent33220A_SRCS_DEFAULT += agilent33220AMain.cpp
-agilent33220A_SRCS_vxWorks += -nil-
+#agilent33220A_SRCS_vxWorks += -nil-
 
 # Add locally compiled object code
 #agilent33220A_SRCS +=
 
 # The following adds object code from base/src/vxWorks
-agilent33220A_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
+#agilent33220A_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # This line says that this IOC Application depends on the
 # xxx Support Module
