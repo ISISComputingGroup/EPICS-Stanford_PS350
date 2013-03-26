@@ -8,11 +8,16 @@ SUPPORT=/corvette/home/epics/devel
 IPAC=$(SUPPORT)/ipac/2-11
 
 # SEQ is required for testIPServer
-SNCSEQ=$(SUPPORT)/seq/2-1-11
+#SNCSEQ=$(SUPPORT)/seq/2-1-11
 
 #  EPICS_BASE 3.14.6 or later is required
 LINUX_GPIB=NO
-EPICS_BASE=/corvette/usr/local/epics/base-3.14.12.1
+#Additional macro to decide whether or not to build the 488.2 code (default NO)
+GPIB_488=NO
+
+#Commented code as this was being used during MakeSupport.pl rather than the appropriate EPICS_BASE
+#EPICS_BASE=/corvette/usr/local/epics/base-3.14.12.1
+
 -include $(TOP)/../configure/EPICS_BASE.$(EPICS_HOST_ARCH)
 
 include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
