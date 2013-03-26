@@ -6,15 +6,15 @@
 < envPaths
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/db"
 
-epicsEnvSet "P" "$(P=KTB:SE:A3631)"
-epicsEnvSet "R" "$(R=:PSU:)"
+epicsEnvSet "P" "$(P=$(MYPVPREFIX))"
+epicsEnvSet "R" "$(R=A3631:PSU:)"
 epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM20)"
 
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/agilent3631Atest.dbd"
-agilent3631Atest_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/agilent3631A.dbd"
+agilent3631A_registerRecordDeviceDriver pdbbase
 
 # Set up ASYN ports
 drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)

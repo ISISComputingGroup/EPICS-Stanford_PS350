@@ -6,14 +6,14 @@
 < envPaths
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/db"
 
-epicsEnvSet "P" "$(PREFIX)"
+epicsEnvSet "P" "$(P=$(MYPVPREFIX))"
 epicsEnvSet "R" "$(R=A3631:PSU:)"
 
 cd ${TOP}
 
 ## Register all support components
-dbLoadDatabase "dbd/agilent3631Atest.dbd"
-agilent3631Atest_registerRecordDeviceDriver pdbbase
+dbLoadDatabase "dbd/agilent3631A.dbd"
+agilent3631A_registerRecordDeviceDriver pdbbase
 
 #Set up the GPIB access
 GpibBoardDriverConfig("GPIB0","1","0","3","0")
