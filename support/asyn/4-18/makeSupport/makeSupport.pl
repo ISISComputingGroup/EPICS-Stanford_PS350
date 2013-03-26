@@ -41,7 +41,7 @@ if ($opt_A) {
     $asyn = abs_path($opt_A);
 } else {
     # Work it out from this script's pathname
-    my @asyn = split /[\/]/, $0;
+    my @asyn = split /[\/\\]/, $0;
     warn "expected 'makeSupport.pl', got '$_'\n"
 	unless 'makeSupport.pl' eq ($_ = pop @asyn);
     warn "expected 'expected $arch', got '$_'\n"
