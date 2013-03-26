@@ -155,6 +155,17 @@ DBD += drvLinuxGpib.dbd
 asyn_LIBS += gpib
 endif
 
+#Additional check on macro in release file to decide on whether or not to build ni488.2 asyn files
+ifeq ($(GPIB_488),YES)
+SRC_DIRS += $(ASYN)/488Gpib
+asyn_SRCS += drv488Gpib.c
+DBD += drv488Gpib.dbd
+#Include the appropriate directory for the header file
+USR_INCLUDES += -I"$(NIEXTCCOMPILERSUPP)/include"
+#Add the object used (as provided by NI for interaction with 488.2 dll) as a flag in order to link it appropriately during build
+asyn_LDFLAGS += "$(NIEXTCCOMPILERSUPP)/lib64/msvc/ni4882.obj"
+endif
+
 SRC_DIRS += $(ASYN)/devGpib
 INC += devGpib.h
 INC += devSupportGpib.h
