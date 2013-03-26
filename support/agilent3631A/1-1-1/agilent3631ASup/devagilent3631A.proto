@@ -1,0 +1,55 @@
+getIDN {
+    out "*IDN?";
+    in "%\$1[^\r\n]";
+    ExtraInput = Ignore;
+}
+
+cmd {
+    out "\$1";
+}
+
+setD {
+    out "\$1 %d";
+}
+getD {
+    out "\$1?";
+    in "%d";
+    ExtraInput = Ignore;
+}
+
+#Additional I/O for all devices
+#Wait set at 200 for agilent3631A as device is slow
+read_float {
+    out "\$1?"; in "%f";
+	ExtraInput = Ignore;
+}
+
+write_float {
+    out "\$1 %e";
+	wait 200;
+}
+
+read_int {
+    out "\$1?"; in "%d";
+    ExtraInput = Ignore;
+}
+
+write_int {
+    out "\$1 %d";
+	wait 200;
+}
+
+read_string {
+    out "\$1?"; in "%s";
+	ExtraInput = Ignore;
+}
+
+write_string {
+    out "\$1 %s";
+	wait 200;
+}
+
+#Additional I/O for Agilent 3631A
+setLocRem {
+    out "SYST:%{LOC|REM}";
+}
