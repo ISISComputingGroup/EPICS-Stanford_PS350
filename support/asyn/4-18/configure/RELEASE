@@ -17,6 +17,8 @@ GPIB_488=NO
 
 #Commented code as this was being used during MakeSupport.pl rather than the appropriate EPICS_BASE
 #EPICS_BASE=/corvette/usr/local/epics/base-3.14.12.1
+#Line added as without it makeSupport does not function
+EPICS_BASE=c:/ISISEPICS/base/3-14-12-2
 
 -include $(TOP)/../configure/EPICS_BASE.$(EPICS_HOST_ARCH)
 
