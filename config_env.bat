@@ -7,10 +7,22 @@ set KIT_ROOT=%MYDIR%
 set EPICS_BASE_VERSION=3-14-12-2
 set EPICS_BASE=%MYDIR%base\%EPICS_BASE_VERSION%
 
+if "%1" == "" (
+    if exist "%MYDIR%DEFAULT_HOST_ARCH.txt" (
+        for /f %%i in ( %MYDIR%DEFAULT_HOST_ARCH.txt ) do set EPICS_HOST_ARCH=%%i
+    ) else (
+        set EPICS_HOST_ARCH=windows-x64
+    )
+) else (
+    set EPICS_HOST_ARCH=%1
+)
+
+@echo %EPICS_HOST_ARCH%> "%MYDIR%DEFAULT_HOST_ARCH.txt"
+
 set MYPVPREFIX=%COMPUTERNAME%:%USERNAME%:
 
 @echo ### $Id$ ###
-@echo Using EPICS base %EPICS_BASE_VERSION% and setting PV prefix to "%MYPVPREFIX%"
+@echo Using EPICS base %EPICS_BASE_VERSION% for %EPICS_HOST_ARCH% and setting PV prefix to "%MYPVPREFIX%"
 
 call %EPICS_BASE%\startup\win32.bat
 
@@ -38,6 +50,7 @@ set PATH=%MYDIR%support\StreamDevice\bin\%EPICS_HOST_ARCH%;%PATH%
 set PATH=%MYDIR%support\pcre\bin\%EPICS_HOST_ARCH%;%PATH%
 set PATH=%MYDIR%support\galil\1-4\bin\%EPICS_HOST_ARCH%;%PATH%
 set PATH=%MYDIR%support\eurotherm2k\1-11\bin\%EPICS_HOST_ARCH%;%PATH%
+set PATH=%MYDIR%support\autosave\R5_0\bin\%EPICS_HOST_ARCH%;%PATH%
 
 REM POCO 
 REM set PATH=%MYDIR%Third_Party\POCO\bin_x64;%PATH%
