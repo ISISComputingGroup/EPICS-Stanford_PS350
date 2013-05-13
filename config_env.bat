@@ -1,5 +1,9 @@
 @echo off
 
+REM usage is  config_env arch build_type
+REM arch is e.g. windows-x64 or win32-x86 (default: whatever last specified, or windows-x64 on first run)
+REM build_type is static or shared (default: whatever last specified, or shared)
+
 set MYDIR=%~dp0
 
 set KIT_ROOT=%MYDIR%
@@ -7,22 +11,28 @@ set KIT_ROOT=%MYDIR%
 set EPICS_BASE_VERSION=3-14-12-2
 set EPICS_BASE=%MYDIR%base\%EPICS_BASE_VERSION%
 
-if "%1" == "" (
-    if exist "%MYDIR%DEFAULT_HOST_ARCH.txt" (
-        for /f %%i in ( %MYDIR%DEFAULT_HOST_ARCH.txt ) do set EPICS_HOST_ARCH=%%i
-    ) else (
-        set EPICS_HOST_ARCH=windows-x64
-    )
-) else (
+set EPICS_HOST_ARCH=windows-x64
+set MY_BUILD_TYPE=shared
+if exist "%MYDIR%epics_host_arch.txt" (
+    for /f %%i in ( %MYDIR%epics_host_arch.txt ) do set EPICS_HOST_ARCH=%%i
+)
+if exist "%MYDIR%build_type.txt" (
+    for /f %%i in ( %MYDIR%build_type.txt ) do set MY_BUILD_TYPE=%%i
+)
+if NOT "%1" == "" (
     set EPICS_HOST_ARCH=%1
 )
-
-@echo %EPICS_HOST_ARCH%> "%MYDIR%DEFAULT_HOST_ARCH.txt"
+if NOT "%2" == "" (
+    set MY_BUILD_TYPE=%2
+)
+echo %EPICS_HOST_ARCH%> "%MYDIR%epics_host_arch.txt"
+echo %MY_BUILD_TYPE%> "%MYDIR%build_type.txt"
 
 set MYPVPREFIX=%COMPUTERNAME%:%USERNAME%:
 
 @echo ### $Id$ ###
-@echo Using EPICS base %EPICS_BASE_VERSION% for %EPICS_HOST_ARCH% and setting PV prefix to "%MYPVPREFIX%"
+@echo Using EPICS base %EPICS_BASE_VERSION% for %EPICS_HOST_ARCH% (%MY_BUILD_TYPE%)
+@echo Setting PV prefix to "%MYPVPREFIX%"
 
 call %EPICS_BASE%\startup\win32.bat
 
@@ -68,3 +78,12 @@ REM IOCS_APPL_TOP
 copy /y %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH% %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%.bak
 sed -e "s=\\=/=g" %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%.bak > %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
 sed -e "s=MYPVPREFIX=%MYPVPREFIX%=g" %MYDIR%CSS\Config\settings.ini.in > %MYDIR%CSS\Config\settings.ini
+
+if "%MY_BUILD_TYPE%" == "static" (
+    echo SHARED_LIBRARIES=NO> %EPICS_BASE%\configure\CONFIG_SITE_ISIS
+    echo STATIC_BUILD=YES>> %EPICS_BASE%\configure\CONFIG_SITE_ISIS
+) else (
+    echo SHARED_LIBRARIES=YES> %EPICS_BASE%\configure\CONFIG_SITE_ISIS
+    echo STATIC_BUILD=NO>> %EPICS_BASE%\configure\CONFIG_SITE_ISIS
+)
+

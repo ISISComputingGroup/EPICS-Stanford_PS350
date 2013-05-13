@@ -187,3 +187,4 @@ GCC_PIPE = NO
 #       must be either YES or NO
 LINKER_USE_RPATH=YES
 
+include $(CONFIG)/CONFIG_SITE_ISIS
