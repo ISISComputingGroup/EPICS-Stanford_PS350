@@ -29,3 +29,6 @@ export PATH=${mydir}/extensions/bin/${EPICS_HOST_ARCH}:${PATH}
 #done
 #export LD_LIBRARY_PATH=${epics_base_path}/lib/${EPICS_HOST_ARCH}:${LD_LIBRARY_PATH}
 sed -e "s=MYPVPREFIX=%MYPVPREFIX%=g" ${mydir}/CSS/Config/settings.ini.in > ${mydir}/CSS/Config/settings.ini
+
+echo SHARED_LIBRARIES=YES> ${epics_base_path}/configure/CONFIG_SITE_ISIS
+echo STATIC_BUILD=NO> ${epics_base_path}/configure/CONFIG_SITE_ISIS
