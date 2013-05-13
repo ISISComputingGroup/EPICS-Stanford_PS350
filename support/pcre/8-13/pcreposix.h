@@ -114,7 +114,7 @@ imported have to be identified as such. When building PCRE, the appropriate
 export settings are needed, and are set in pcreposix.c before including this
 file. */
 
-#if defined(_WIN32) && !defined(PCRE_STATIC) && !defined(PCREPOSIX_EXP_DECL)
+#if defined(_WIN32) && !defined(PCRE_STATIC) && !defined(PCREPOSIX_EXP_DECL) && defined(_DLL)
 #  define PCREPOSIX_EXP_DECL  extern __declspec(dllimport)
 #  define PCREPOSIX_EXP_DEFN  __declspec(dllimport)
 #endif

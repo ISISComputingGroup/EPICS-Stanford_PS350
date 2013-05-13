@@ -23,6 +23,9 @@ CALC=$(SUPPORT)/calc/2-9
 SSCAN=$(SUPPORT)/sscan/2-8
 MOTOR=$(SUPPORT)/motor/6-7-1
 GALIL=$(SUPPORT)/galil/1-4
+AUTOSAVE=$(SUPPORT)/autosave/R5_0
+ASYN=$(SUPPORT)/asyn/4-18
+
 EPICS_BASE=/beamline/perforce/Dev/SBS/4_Controls/4_3_Network_Infrastructure/4_3_1_Comms_Common_Services/sw/epics/base-3-14-11
 
 #Capfast users may need the following definitions

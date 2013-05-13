@@ -14,7 +14,7 @@ DBD += galilTest.dbd
 # galilTest.dbd will be made up from these files:
 galilTest_DBD += base.dbd
 #include definitions for any other support applications needed
-galilTest_DBD += devGalil.dbd motorSupport.dbd calcSupport.dbd sscanSupport.dbd
+galilTest_DBD += devGalil.dbd motorSupport.dbd calcSupport.dbd sscanSupport.dbd asSupport.dbd
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 galilTest_SRCS += galilTest_registerRecordDeviceDriver.cpp
@@ -25,7 +25,7 @@ galilTest_SRCS_vxWorks += -nil-
 galilTest_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 #add a definition for each support application used by this application
-galilTest_LIBS += galil motor calc sscan
+galilTest_LIBS += galil motor calc sscan asyn autosave dmclnx
 
 #NOTES:
 #      1)It is not possible to build sncExample both as a component of galilTest
