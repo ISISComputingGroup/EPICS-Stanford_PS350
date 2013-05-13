@@ -1,5 +1,9 @@
 #include "dmclnx.h"
 #include "../PCIDriver/pciioctl.h"  //for DATA_RECORD_SIZE
+
+#ifdef _WIN32
+#define snprintf _snprintf
+#endif
  
 /* Global variables */
 CHAR szFileTrace[MAX_PATH];
@@ -14,7 +18,7 @@ LONG FAR GALILCALL DMCInitLibrary()
    
    if (log_dir != NULL)
    {
-	_snprintf(szFileTrace, sizeof(szFileTrace)-1, "%s/dmc_trace.log", log_dir);
+	snprintf(szFileTrace, sizeof(szFileTrace)-1, "%s/dmc_trace.log", log_dir);
 	remove(szFileTrace);
    }
    return 0L;
