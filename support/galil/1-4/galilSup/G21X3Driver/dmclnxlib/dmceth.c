@@ -5,7 +5,11 @@
 #ifdef _WIN32
 #include <winsock2.h>
 #include <Ws2tcpip.h>
+#define ERROR_CODE WSAGetLastError()
 #else
+#define ERROR_CODE errno
+#define WSAECONNRESET	ECONNRESET 
+#define WSAEINTR	EINTR 
 #define closesocket close
 #endif /* _WIN32 */
 
@@ -27,7 +31,7 @@ long OpenSocket(int iIndex)
    if (controller[iIndex].socket == SOCKET_ERROR)
    {
 #ifdef DMC_DEBUG
-      DMCTrace("Could not open a socket. Return code <%ld>.\n", errno);
+      DMCTrace("Could not open a socket. Return code <%ld>.\n", ERROR_CODE);
 #endif
       return DMCERROR_DRIVER;
    }
@@ -47,7 +51,7 @@ long OpenSocket(int iIndex)
    if (rc == SOCKET_ERROR)
    {
 #ifdef DMC_DEBUG
-      DMCTrace("Could not bind to socket. Return code <%ld>.\n", errno);
+      DMCTrace("Could not bind to socket. Return code <%ld>.\n", ERROR_CODE);
 #endif
       closesocket(controller[iIndex].socket);
       return DMCERROR_DRIVER;
@@ -63,7 +67,7 @@ long OpenSocket(int iIndex)
       if (rc == SOCKET_ERROR)
       {
 #ifdef DMC_DEBUG
-         DMCTrace("Could not set socket option for TCP_NODELAY. Return code <%ld>.\n", errno);
+         DMCTrace("Could not set socket option for TCP_NODELAY. Return code <%ld>.\n", ERROR_CODE);
 #endif
       }
 
@@ -73,14 +77,14 @@ long OpenSocket(int iIndex)
       if (rc == SOCKET_ERROR)
       {
 #ifdef DMC_DEBUG
-         DMCTrace("Could not get socket option for TCP_NODELAY. Return code <%ld>.\n", errno);
+         DMCTrace("Could not get socket option for TCP_NODELAY. Return code <%ld>.\n", ERROR_CODE);
 #endif
       }
 
       if (iTemp != 1)
       {
 #ifdef DMC_DEBUG
-         DMCTrace("TCP_NODELAY option was not set.\n", errno);
+         DMCTrace("TCP_NODELAY option was not set.\n", ERROR_CODE);
 #endif
       }
    }
@@ -96,7 +100,7 @@ long OpenSocket(int iIndex)
    if (rc == SOCKET_ERROR)
    {
 #ifdef DMC_DEBUG
-      DMCTrace("Could not connect to host address. Return code <%ld>.\n", errno);
+      DMCTrace("Could not connect to host address. Return code <%ld>.\n", ERROR_CODE);
 #endif
       closesocket(controller[iIndex].socket);
       return DMCERROR_DRIVER;
@@ -107,7 +111,7 @@ long OpenSocket(int iIndex)
    if (controller[iIndex].socketMulticast == SOCKET_ERROR)
    {
 #ifdef DMC_DEBUG
-      DMCTrace("Could not open a multicast socket. Return code <%ld>.\n", errno);
+      DMCTrace("Could not open a multicast socket. Return code <%ld>.\n", ERROR_CODE);
 #endif
       controller[iIndex].socketMulticast = 0;
       return DMCERROR_DRIVER;
@@ -124,7 +128,7 @@ long OpenSocket(int iIndex)
    if (rc == SOCKET_ERROR)
    {
 #ifdef DMC_DEBUG
-      DMCTrace("Could not bind to multicast socket. Return code <%ld>.\n", errno);
+      DMCTrace("Could not bind to multicast socket. Return code <%ld>.\n", ERROR_CODE);
 #endif
       closesocket(controller[iIndex].socketMulticast);
       return DMCERROR_DRIVER;
@@ -140,7 +144,7 @@ long OpenSocket(int iIndex)
          if (rc == SOCKET_ERROR)
          {
 #ifdef DMC_DEBUG
-            DMCTrace("Could not set socket option for IP_MULTICAST_TTL Return code <%ld>.\n", errno);
+            DMCTrace("Could not set socket option for IP_MULTICAST_TTL Return code <%ld>.\n", ERROR_CODE);
 #endif
          }
       }
@@ -155,7 +159,7 @@ long OpenSocket(int iIndex)
    if (rc == SOCKET_ERROR)
    {
 #ifdef DMC_DEBUG
-      DMCTrace("Could not join to multicast group. Return code <%ld>.\n", errno);
+      DMCTrace("Could not join to multicast group. Return code <%ld>.\n", ERROR_CODE);
 #endif
       closesocket(controller[iIndex].socketMulticast);
       return DMCERROR_DRIVER;
@@ -274,9 +278,9 @@ long ETHERNETClear(int iIndex)
    if (rc == SOCKET_ERROR)           
    {
 #ifdef DMC_DEBUG
-      DMCTrace("   Write error. Error code <%d>.\n", errno);
+      DMCTrace("   Write error. Error code <%d>.\n", ERROR_CODE);
 #endif
-      if (errno ==ECONNRESET)
+      if (ERROR_CODE == WSAECONNRESET)
          rc = DMCERROR_DEVICE_DISCONNECTED;
       else
          rc = DMCERROR_DRIVER;
@@ -310,16 +314,16 @@ long ReadSocket(int iIndex, PCHAR pchResponse, ULONG cbResponse, PULONG pulBytes
    	{
    	readrc = select(controller[iIndex].socket + 1, &ReadSet, NULL, NULL, &Timeout);   /* nfds is ignored on windows */
 	if (readrc == SOCKET_ERROR)
-		done=(errno==EINTR) ? 0 : 1;
+		done=(ERROR_CODE==WSAEINTR) ? 0 : 1;
 	else
 		done = 1;
 	}
    if (readrc == SOCKET_ERROR)
    {
 #ifdef DMC_DEBUG
-      DMCTrace("   Read error (select). Error code <%d>.\n", errno);
+      DMCTrace("   Read error (select). Error code <%d>.\n", ERROR_CODE);
 #endif
-      if (errno == ECONNRESET)
+      if (ERROR_CODE == WSAECONNRESET)
          rc = DMCERROR_DEVICE_DISCONNECTED;
       else
          rc = DMCERROR_DRIVER;
@@ -339,9 +343,9 @@ long ReadSocket(int iIndex, PCHAR pchResponse, ULONG cbResponse, PULONG pulBytes
    if (readrc == SOCKET_ERROR)           
    {
 #ifdef DMC_DEBUG
-      DMCTrace("   Read error. Error code <%d>.\n", errno);
+      DMCTrace("   Read error. Error code <%d>.\n", ERROR_CODE);
 #endif
-      if (errno == ECONNRESET)
+      if (ERROR_CODE == WSAECONNRESET)
          rc = DMCERROR_DEVICE_DISCONNECTED;
       else
          rc = DMCERROR_DRIVER;
@@ -380,16 +384,16 @@ long ReadSocketMulticast(int iIndex, PCHAR pchResponse, ULONG cbResponse, PULONG
 	{
 	readrc = select(0, &ReadSet, NULL, NULL, &Timeout);
 	if (readrc == SOCKET_ERROR)
-			done=(errno==EINTR) ? 0 : 1;
+			done=(ERROR_CODE==WSAEINTR) ? 0 : 1;
 		else
 			done = 1;
 	}
       if (readrc == SOCKET_ERROR)
       {
 #ifdef DMC_DEBUG
-         DMCTrace("   Read error (select). Error code <%d>.\n", errno);
+         DMCTrace("   Read error (select). Error code <%d>.\n", ERROR_CODE);
 #endif
-         if (errno == ECONNRESET)
+         if (ERROR_CODE == WSAECONNRESET)
             rc = DMCERROR_DEVICE_DISCONNECTED;
          else
             rc = DMCERROR_DRIVER;
@@ -409,9 +413,9 @@ long ReadSocketMulticast(int iIndex, PCHAR pchResponse, ULONG cbResponse, PULONG
       if (readrc == SOCKET_ERROR)           
       {
 #ifdef DMC_DEBUG
-         DMCTrace("   Read error. Error code <%d>.\n", errno);
+         DMCTrace("   Read error. Error code <%d>.\n", ERROR_CODE);
 #endif
-         if (errno == ECONNRESET)
+         if (ERROR_CODE == WSAECONNRESET)
             rc = DMCERROR_DEVICE_DISCONNECTED;
          else
             rc = DMCERROR_DRIVER;
@@ -444,9 +448,9 @@ long WriteSocket(int iIndex, PCHAR pchCommand, ULONG cbCommand, PULONG pulBytesW
       if (writerc == SOCKET_ERROR)           
       {
 #ifdef DMC_DEBUG
-         DMCTrace("   Write error. Error code <%d>.\n", errno);
+         DMCTrace("   Write error. Error code <%d>.\n", ERROR_CODE);
 #endif
-         if (errno == ECONNRESET)
+         if (ERROR_CODE == WSAECONNRESET)
             rc = DMCERROR_DEVICE_DISCONNECTED;
          else
             rc = DMCERROR_DRIVER;
@@ -494,9 +498,9 @@ long WriteSocketMulticast(int iIndex, PCHAR pchCommand, ULONG cbCommand, PULONG 
       if (writerc == SOCKET_ERROR)           
       {
 #ifdef DMC_DEBUG
-         DMCTrace("   Write error. Error code <%d>.\n", errno);
+         DMCTrace("   Write error. Error code <%d>.\n", ERROR_CODE);
 #endif
-         if (errno == ECONNRESET)
+         if (ERROR_CODE == WSAECONNRESET)
             rc = DMCERROR_DEVICE_DISCONNECTED;
          else
             rc = DMCERROR_DRIVER;
@@ -556,10 +560,10 @@ LONG FAR GALILCALL DMCAssignIPAddress(PCONTROLLERINFO pcontrollerinfo, int fVerb
    if (sock == SOCKET_ERROR)
    {
 #ifdef DMC_DEBUG
-      DMCTrace("Could not open a socket. Return code <%ld>.\n", errno);
+      DMCTrace("Could not open a socket. Return code <%ld>.\n", ERROR_CODE);
 #endif
       if (fVerbose)
-         printf("Could not open a socket. Return code <%ld>.\n", errno);
+         printf("Could not open a socket. Return code <%ld>.\n", ERROR_CODE);
       return DMCERROR_DRIVER;
    }
 
@@ -573,10 +577,10 @@ LONG FAR GALILCALL DMCAssignIPAddress(PCONTROLLERINFO pcontrollerinfo, int fVerb
    if (rc == SOCKET_ERROR)
    {
 #ifdef DMC_DEBUG
-      DMCTrace("Could not bind to a Windows socket. Return code <%ld>.\n", errno);
+      DMCTrace("Could not bind to a Windows socket. Return code <%ld>.\n", ERROR_CODE);
 #endif
       if (fVerbose)
-         printf("Could not bind to a Windows socket. Return code <%ld>.\n", errno);
+         printf("Could not bind to a Windows socket. Return code <%ld>.\n", ERROR_CODE);
        closesocket(sock);
       return DMCERROR_DRIVER;
    }
@@ -585,10 +589,10 @@ LONG FAR GALILCALL DMCAssignIPAddress(PCONTROLLERINFO pcontrollerinfo, int fVerb
    if (rc == SOCKET_ERROR)
    {
 #ifdef DMC_DEBUG
-      DMCTrace("Could not set socket options. Return code <%ld>.\n", errno);
+      DMCTrace("Could not set socket options. Return code <%ld>.\n", ERROR_CODE);
 #endif
       if (fVerbose)
-         printf("Could not set socket options. Return code <%ld>.\n", errno);
+         printf("Could not set socket options. Return code <%ld>.\n", ERROR_CODE);
        closesocket(sock);
       return DMCERROR_DRIVER;
    }
@@ -616,13 +620,13 @@ LONG FAR GALILCALL DMCAssignIPAddress(PCONTROLLERINFO pcontrollerinfo, int fVerb
          if (rc == SOCKET_ERROR)
          {
 #ifdef DMC_DEBUG
-            DMCTrace("Error returned from \"recvfrom\". Return code <%ld>.\n", errno);
-            DMCTrace("An error occurred attempting to read a BOOTP packet. Return code %ld.\n", errno);
+            DMCTrace("Error returned from \"recvfrom\". Return code <%ld>.\n", ERROR_CODE);
+            DMCTrace("An error occurred attempting to read a BOOTP packet. Return code %ld.\n", ERROR_CODE);
 #endif
             if (fVerbose)           
             {
-               printf("Error returned from \"recvfrom\". Return code <%ld>.\n", errno);
-               printf("An error occurred attempting to read a BOOTP packet. Return code %ld.\n", errno);
+               printf("Error returned from \"recvfrom\". Return code <%ld>.\n", ERROR_CODE);
+               printf("An error occurred attempting to read a BOOTP packet. Return code %ld.\n", ERROR_CODE);
             }
             bError = TRUE;
             break;
@@ -668,12 +672,12 @@ LONG FAR GALILCALL DMCAssignIPAddress(PCONTROLLERINFO pcontrollerinfo, int fVerb
                if (rc == SOCKET_ERROR)
                {
 #ifdef DMC_DEBUG
-                  DMCTrace("Error returned from \"sendto\". Return code <%ld>.\n", errno);
+                  DMCTrace("Error returned from \"sendto\". Return code <%ld>.\n", ERROR_CODE);
                   DMCTrace("An error occurred attempting to write a BOOTP packet. Return code %ld.\n", rc);
 #endif
                   if (fVerbose)
                   {
-                     printf("Error returned from \"sendto\". Return code <%ld>.\n", errno);
+                     printf("Error returned from \"sendto\". Return code <%ld>.\n", ERROR_CODE);
                      printf("An error occurred attempting to write a BOOTP packet. Return code %ld.\n", rc);
                   }
                   bError = TRUE;
@@ -788,14 +792,14 @@ int WillReadBlock(SOCKET sock)
    	{
    	rc = select(sock + 1, &ReadSet, NULL, NULL, &Timeout); /* nfds is ignored on windows */
 	if (rc == SOCKET_ERROR)
-		done=(errno==EINTR) ? 0 : 1;
+		done=(ERROR_CODE==WSAEINTR) ? 0 : 1;
 	else
 		done = 1;
 	}
 	
    if (rc == SOCKET_ERROR)
    {
-      rc = errno;
+      rc = ERROR_CODE;
    }
    else
    {

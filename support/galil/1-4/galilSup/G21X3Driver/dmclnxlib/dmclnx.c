@@ -7,10 +7,16 @@ CONTROLLER controller[MAX_CONTROLLERS];
 
 LONG FAR GALILCALL DMCInitLibrary()
 {
+   const char* log_dir = getenv("DMC_LOG_DIR");
    // Initialize all global variables 
    memset(szFileTrace, '\0', sizeof(szFileTrace));
    memset(controller, '\0', sizeof(controller));
-
+   
+   if (log_dir != NULL)
+   {
+	_snprintf(szFileTrace, sizeof(szFileTrace)-1, "%s/dmc_trace.log", log_dir);
+	remove(szFileTrace);
+   }
    return 0L;
 }
 
