@@ -4,7 +4,7 @@ include $(TOP)/configure/CONFIG
 #DIRS = RandomNumber SimpleIoc
 
 # extra ones #
-MODULES = RandomNumber SimpleIoc
+MODULES = RandomNumber SimpleIoc isisbeam
 ifeq ($(findstring linux,$(EPICS_HOST_ARCH)),)
 ifeq ($(HAVE_ATL),YES)
 MODULES += lvDCOM
