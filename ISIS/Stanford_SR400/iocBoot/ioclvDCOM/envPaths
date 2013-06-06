@@ -1,0 +1,6 @@
+epicsEnvSet("ARCH","windows-x64")
+epicsEnvSet("IOC","ioclvDCOM")
+epicsEnvSet("TOP","C:/EPICS/ISIS/Stanford_SR400")
+epicsEnvSet("EPICS_BASE","C:/EPICS/base/3-14-12-2")
+epicsEnvSet("ASYN","C:/EPICS/support/asyn/4-18")
+epicsEnvSet("SUPPORT","C:/EPICS/support")
