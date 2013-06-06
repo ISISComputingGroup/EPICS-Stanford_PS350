@@ -25,7 +25,7 @@ if NOT "%4" == "" (
 )
 
 cd c:\EPICS
-call build.bat arch_type build_type
+call build.bat %arch_type% %build_type%
 
 C:\"Program Files"\7-Zip\7z.exe a -xr!.svn -xr!CSS -xr!pilot -xr!src %2 *
 move /Y %2 c:\Installers\EPICS\.
