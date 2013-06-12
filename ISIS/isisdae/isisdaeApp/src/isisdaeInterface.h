@@ -58,6 +58,11 @@ public:
 //	template<typename T> void getLabviewValue(const char* param, T* value);
 //	template<typename T> void getLabviewValue(const char* param, T* value, size_t nElements, size_t& nIn);
 	virtual ~isisdaeInterface() { }
+	unsigned long getGoodFrames();
+	unsigned long getRawFrames();
+	double getGoodUAH();
+	int beginRun();
+	
 
 private:
 	std::string m_host;

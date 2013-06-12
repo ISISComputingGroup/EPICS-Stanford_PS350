@@ -11,7 +11,8 @@ cd ${TOP}
 dbLoadDatabase "dbd/isisdae.dbd"
 isisdae_registerRecordDeviceDriver pdbbase
 
-isisdaeConfigure("ndxchipir", "spudulike", "reliablebeam")
+isisdaeConfigure("icp", "localhost")
+#isisdaeConfigure("icp", "ndxchipir", 0, "spudulike", "reliablebeam")
 
 ## Load record instances
 dbLoadRecords("$(TOP)/db/isisdae.db","P=ex1:")

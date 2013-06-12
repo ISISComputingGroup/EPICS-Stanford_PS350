@@ -13,9 +13,9 @@ public:
                 
     // These are the methods that we override from asynPortDriver
     virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
-	virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
+//	virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
     virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
-    virtual asynStatus readFloat64(asynUser *pasynUser, epicsFloat64 *value);
+//  virtual asynStatus readFloat64(asynUser *pasynUser, epicsFloat64 *value);
 	virtual asynStatus readOctet(asynUser *pasynUser, char *value, size_t maxChars, size_t *nActual, int *eomReason);
 	virtual asynStatus writeOctet(asynUser *pasynUser, const char *value, size_t maxChars, size_t *nActual);
     virtual asynStatus readFloat64Array(asynUser *pasynUser, epicsFloat64 *value, size_t nElements, size_t *nIn);
@@ -24,6 +24,8 @@ public:
 private:
 
     int P_GoodFrames; // int
+	int P_GoodUAH; // double
+	int P_BeginRun; // int
     int P_RawFrames; // int
 	#define FIRST_ISISDAE_PARAM P_GoodFrames
 	#define LAST_ISISDAE_PARAM P_RawFrames
@@ -42,5 +44,7 @@ private:
 
 #define P_GoodFramesString	"GOODFRAMES"
 #define P_RawFramesString	"RAWFRAMES"
+#define P_GoodUAHString	"GOODUAH"
+#define P_BeginRunString	"BEGINRUN"
 
 #endif /* ISISDAEDRIVER_H */

@@ -42,7 +42,10 @@ asynStatus isisdaeDriver::writeValue(asynUser *pasynUser, const char* functionNa
 		{
 			throw std::runtime_error("m_iface is NULL");
 		}
-//		m_iface->setLabviewValue(paramName, value);
+		if (function == P_BeginRun)
+		{
+			m_iface->beginRun();
+		}
         asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
               "%s:%s: function=%d, name=%s, value=%s\n", 
               driverName, functionName, function, paramName, convertToString(value).c_str());
@@ -135,15 +138,15 @@ asynStatus isisdaeDriver::readInt32Array(asynUser *pasynUser, epicsInt32 *value,
     return readArray(pasynUser, "readInt32Array", value, nElements, nIn);
 }
 
-asynStatus isisdaeDriver::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
-{
-	return readValue(pasynUser, "readFloat64", value);
-}
+//asynStatus isisdaeDriver::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
+//{
+//	return readValue(pasynUser, "readFloat64", value);
+//}
 
-asynStatus isisdaeDriver::readInt32(asynUser *pasynUser, epicsInt32 *value)
-{
-	return readValue(pasynUser, "readInt32", value);
-}
+//asynStatus isisdaeDriver::readInt32(asynUser *pasynUser, epicsInt32 *value)
+//{
+//	return readValue(pasynUser, "readInt32", value);
+//}
 
 asynStatus isisdaeDriver::readOctet(asynUser *pasynUser, char *value, size_t maxChars, size_t *nActual, int *eomReason)
 {
@@ -272,9 +275,10 @@ isisdaeDriver::isisdaeDriver(isisdaeInterface* iface, const char *portName)
 			std::cerr << driverName << ":" << functionName << ": unknown type " << it->second << " for parameter " << it->first << std::endl;
 		}
 	}
-//	createParam(P_BeamTS1String, asynParamFloat64, &P_BeamTS1);
-//	createParam(P_BeamTS2String, asynParamFloat64, &P_BeamTS2);
-//	createParam(P_BeamEPB1String, asynParamFloat64, &P_BeamEPB1);
+	createParam(P_GoodFramesString, asynParamInt32, &P_GoodFrames);
+	createParam(P_RawFramesString, asynParamInt32, &P_RawFrames);
+	createParam(P_GoodUAHString, asynParamFloat64, &P_GoodUAH);
+	createParam(P_BeginRunString, asynParamInt32, &P_BeginRun);
 
     // Create the thread for background tasks (not used at present, could be used for I/O intr scanning) 
     if (epicsThreadCreate("isisdaePoller",
@@ -298,19 +302,13 @@ void isisdaeDriver::pollerThread()
     static const char* functionName = "isisdaePoller";
 	while(true)
 	{
-		if (false)
-		{
-			lock();
-//			setDoubleParam(P_BeamTS1, beamts1);
-//			setDoubleParam(P_BeamTS2, beamts2);
-//			setDoubleParam(P_BeamEPB1, beamepb1);
-			callParamCallbacks();
-			unlock();
-		}
-		else
-		{
-			epicsThreadSleep(3.0);
-		}
+		lock();
+		setIntegerParam(P_GoodFrames, m_iface->getGoodFrames());
+		setIntegerParam(P_RawFrames, m_iface->getRawFrames());
+		setDoubleParam(P_GoodUAH, m_iface->getGoodUAH());
+		callParamCallbacks();
+		unlock();
+		epicsThreadSleep(1.0);
 	}
 }	
 

@@ -1,45 +1,28 @@
-record(ao, "$(P)CON1")
-{
-   field(DTYP, "asynFloat64")
-   field(OUT,  "@asyn(ex1,0,0)cont1")
-   field(PREC, "3")
-}
-
-record(ao, "$(P)CON2")
-{
-   field(DTYP, "asynFloat64")
-   field(OUT,  "@asyn(ex1,0,0)cont2")
-   field(PREC, "3")
-}
-
-record(ai, "$(P)IND1")
+record(longin, "$(P)RAWFRAMES")
 {
    field(DTYP, "asynInt32")
-   field(INP,  "@asyn(ex1,0,0)ind1")
+   field(INP,  "@asyn(icp,0,0)RAWFRAMES")
+   field(SCAN, "I/O Intr")
+}
+
+record(longin, "$(P)GOODFRAMES")
+{
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn(icp,0,0)GOODFRAMES")
+#   field(SCAN, ".1 second")
+   field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)GOODUAH")
+{
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn(icp,0,0)GOODUAH")
    field(PREC, "3")
-   field(SCAN, ".1 second")
+   field(SCAN, "I/O Intr")
 }
 
-record(waveform, "$(P)FLTARRAY")
+record(bo, "$(P)BEGINRUN")
 {
-   field(DTYP, "asynFloat64ArrayIn")
-   field(INP,  "@asyn(ex1,0,0)arrayind1")
-   field(PREC, "3")
-   field(SCAN, ".1 second")
-   field(NELM, "10")
-   field(FTVL, "DOUBLE")
+   field(DTYP, "asynInt32")
+   field(OUT,  "@asyn(icp,0,0)BEGINRUN")
 }
-
-record(stringin, "$(P)STR")
-{
-   field(DTYP, "asynOctetRead")
-   field(INP,  "@asyn(ex1,0,0)strcont1")
-   field(SCAN, ".1 second")
-}
-
-record(stringout, "$(P)STRW")
-{
-   field(DTYP, "asynOctetWrite")
-   field(OUT,  "@asyn(ex1,0,0)strcont1")
-}
-

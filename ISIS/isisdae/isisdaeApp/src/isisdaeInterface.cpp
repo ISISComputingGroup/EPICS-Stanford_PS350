@@ -123,7 +123,7 @@ void isisdaeInterface::epicsExitFunc(void* arg)
 long isisdaeInterface::nParams()
 {
 	long n = 0;
-	n = 2;
+	n = 10;
 	return n;
 }
 
@@ -165,12 +165,12 @@ HRESULT isisdaeInterface::setIdentity(COAUTHIDENTITY* pidentity, IUnknown* pUnk)
     return S_OK;
 }
 
-//	epicsGuard<epicsMutex> _lock(m_lock);
 
 void isisdaeInterface::checkConnection()
 {
 	epicsThreadOnce(&onceId, initCOM, NULL);
 	HRESULT hr;
+	epicsGuard<epicsMutex> _lock(m_lock);
 	if ( (m_icp != NULL) && (m_icp->areYouThere() == S_OK) )
 	{
 		;
@@ -192,7 +192,7 @@ void isisdaeInterface::checkConnection()
 		csi.pwszName = host;
 		csi.pAuthInfo = pauth;
 		MULTI_QI mq[ 1 ] = { 0 }; 
-		mq[ 0 ].pIID = &IID_IDispatch; // &IID_Idae;  // &IID_IDispatch; 
+		mq[ 0 ].pIID = &isisicpLib::IID_Idae; // &IID_IDispatch; 
 		mq[ 0 ].pItf = NULL; 
 		mq[ 0 ].hr   = S_OK; 
 		hr = CoCreateInstanceEx( m_clsid, NULL, CLSCTX_REMOTE_SERVER | CLSCTX_LOCAL_SERVER, &csi, 1, mq ); 
@@ -226,3 +226,30 @@ void isisdaeInterface::checkConnection()
 }
 
 
+unsigned long isisdaeInterface::getGoodFrames()
+{
+	BSTR messages = NULL;
+	checkConnection();
+	return m_icp->getGoodFramesTotal(&messages);
+}
+
+unsigned long isisdaeInterface::getRawFrames()
+{
+	BSTR messages = NULL;
+	checkConnection();
+	return m_icp->getRawFramesTotal(&messages);
+}
+
+double isisdaeInterface::getGoodUAH()
+{
+	BSTR messages = NULL;
+	checkConnection();
+	return m_icp->getGoodUAmpH(&messages);
+}
+
+int isisdaeInterface::beginRun()
+{
+	BSTR messages = NULL;
+	checkConnection();
+	return m_icp->beginRun(&messages);
+}
