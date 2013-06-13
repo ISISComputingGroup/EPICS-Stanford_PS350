@@ -14,6 +14,7 @@ DBD += Stanford_PS350.dbd
 
 # Stanford_PS350.dbd will be made up from these files:
 Stanford_PS350_DBD += base.dbd
+Stanford_PS350_DBD += asyn.dbd
 
 # Include dbd files from all support applications:
 #Stanford_PS350_DBD += xxx.dbd
