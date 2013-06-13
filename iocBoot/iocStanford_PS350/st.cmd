@@ -23,8 +23,8 @@ cd ${TOP}/iocBoot/${IOC}
 ##
 ## the "options" argument is a combination of the following flags (as per the #lvDCOMOptions enum in lvDCOMInterface.h)
 ##    viWarnIfIdle=1, viStartIfIdle=2, viStopOnExitIfStarted=4, viAlwaysStopOnExit=8
-lvDCOMConfigure("frontpanel", "frontpanel", "$(TOP)/iocBoot/ioclvDCOM/stanfordPS350.xml", "ndxchipir", 6, "", "spudulike", "reliablebeam")
-#lvDCOMConfigure("frontpanel", "frontpanel", "$(TOP)/iocBoot/ioclvDCOM/stanfordPS350.xml", "", 6)
+lvDCOMConfigure("frontpanel", "frontpanel", "$(TOP)/Stanford_PS350App/protocol/stanfordPS350.xml", "ndxchipir", 6, "", "spudulike", "reliablebeam")
+#lvDCOMConfigure("frontpanel", "frontpanel", "$(TOP)/Stanford_PS350App/protocol/stanfordPS350.xml", "", 6)
 
 dbLoadRecords("$(TOP)/db/Stanford_PS350.db","P=INST:SE:STPS350:")
 #asynSetTraceMask("frontpanel",0,0xff)
