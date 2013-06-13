@@ -16,6 +16,7 @@ export MYPVPREFIX="${SHORT_HOSTNAME}:${USER}:"
 set_epics_base="EPICS_BASE=${epics_base_path}"
 echo "${set_epics_base}" > ISIS_CONFIG.${EPICS_HOST_ARCH}
 echo "SUPPORT=${mydir}/support" >> ISIS_CONFIG.${EPICS_HOST_ARCH}
+echo "ISISSUPPORT=${mydir}/ISIS" >> ISIS_CONFIG.${EPICS_HOST_ARCH}
 # echo "INSTALL_LOCATION$=${mydir}/install" >> ISIS_CONFIG.${EPICS_HOST_ARCH}
 # echo "INSTALL_LOCATION_APP=${mydir}/install" >> ISIS_CONFIG.${EPICS_HOST_ARCH}
 

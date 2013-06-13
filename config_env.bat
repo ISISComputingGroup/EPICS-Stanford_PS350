@@ -68,6 +68,7 @@ REM set PATH=%MYDIR%Third_Party\POCO\bin_x64;%PATH%
 REM create include for path to EPICS_BASE
 echo EPICS_BASE=%EPICS_BASE%> %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
 echo SUPPORT=%MYDIR%support>> %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
+echo ISISSUPPORT=%MYDIR%ISIS>> %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
 
 REM we only have ATL is we use full Visual studio, not express
 if exist "%VCINSTALLDIR%atlmfc\include" echo HAVE_ATL=YES>> %MYDIR%ISIS_CONFIG.%EPICS_HOST_ARCH%
