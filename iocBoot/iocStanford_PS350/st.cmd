@@ -26,8 +26,7 @@ cd ${TOP}/iocBoot/${IOC}
 lvDCOMConfigure("frontpanel", "frontpanel", "$(TOP)/iocBoot/ioclvDCOM/stanfordPS350.xml", "ndxchipir", 6, "", "spudulike", "reliablebeam")
 #lvDCOMConfigure("frontpanel", "frontpanel", "$(TOP)/iocBoot/ioclvDCOM/stanfordPS350.xml", "", 6)
 
-dbLoadRecords("$(TOP)/db/lvDCOM.db","P=INST:SE:STPS350:")
-#dbLoadRecords("$(ASYN)/db/asynRecord.db","P=ex1:,R=asyn1,PORT=ex1,ADDR=0,OMAX=80,IMAX=80")
+dbLoadRecords("$(TOP)/db/Stanford_PS350.db","P=INST:SE:STPS350:")
 #asynSetTraceMask("frontpanel",0,0xff)
 asynSetTraceIOMask("frontpanel",0,0x2)
 
