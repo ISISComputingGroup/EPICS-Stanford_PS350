@@ -1,28 +1,17 @@
-TOP = ./extensions
+#Makefile at top of application tree
+TOP = .
 include $(TOP)/configure/CONFIG
+DIRS := $(DIRS) $(filter-out $(DIRS), configure)
+DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard *App))
+DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard iocBoot))
 
-DIRS = base base_examples extensions support ISIS
+define DIR_template
+ $(1)_DEPEND_DIRS = configure
+endef
+$(foreach dir, $(filter-out configure,$(DIRS)),$(eval $(call DIR_template,$(dir))))
 
-DIRS := $(wildcard $(DIRS))
+iocBoot_DEPEND_DIRS += $(filter %App,$(DIRS))
 
-base_examples_DEPENDS_DIRS = base
-extensions_DEPENDS_DIRS = base
-support_DEPENDS_DIRS = base
-ISIS_DEPENDS_DIRS = support
+include $(TOP)/configure/RULES_TOP
 
-all : ISIS_CONFIG.$(EPICS_HOST_ARCH)
 
-#
-# check if we need to re-fun config_env
-#
-ifeq ($(findstring windows,$(EPICS_HOST_ARCH)),) 
-ISIS_CONFIG.$(EPICS_HOST_ARCH) : config_env.sh
-	$(error You need to re-run   config_env.sh   first)
-else
-ISIS_CONFIG.$(EPICS_HOST_ARCH) : config_env.bat
-	$(error You need to re-run   config_env.bat   first)
-endif
-
-ACTIONS += uninstall kit zip
-
-include $(TOP)/configure/RULES_DIRS
