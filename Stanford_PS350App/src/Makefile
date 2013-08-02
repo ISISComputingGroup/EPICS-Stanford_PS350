@@ -17,10 +17,10 @@ Stanford_PS350_DBD += base.dbd
 Stanford_PS350_DBD += lvDCOM.dbd
 
 # Include dbd files from all support applications:
-#Stanford_PS350_DBD += xxx.dbd
+Stanford_PS350_DBD += devIocStats.dbd
 
 # Add all the support libraries needed by this IOC
-#Stanford_PS350_LIBS += xxx
+Stanford_PS350_LIBS += devIocStats
 
 # Stanford_PS350_registerRecordDeviceDriver.cpp derives from Stanford_PS350.dbd
 Stanford_PS350_SRCS += Stanford_PS350_registerRecordDeviceDriver.cpp
