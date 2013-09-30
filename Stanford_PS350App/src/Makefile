@@ -32,7 +32,7 @@ Stanford_PS350_SRCS_vxWorks += -nil-
 # Add support from base/src/vxWorks if needed
 #Stanford_PS350_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
-Stanford_PS350_LIBS +=  lvDCOMSupport asyn autosave
+Stanford_PS350_LIBS +=  lvDCOM asyn autosave
 Stanford_PS350_SYS_LIBS_WIN32 += msxml2
 
 # Finally link to the EPICS Base libraries
