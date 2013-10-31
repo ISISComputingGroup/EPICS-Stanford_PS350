@@ -41,14 +41,26 @@
         <set method="SCV" extint="true" target="VLIM Setpoint" post_button="Set VLim" /> 
 	  </param>
       
+      <param name="v_limit_sp" type="float64"> 
+        <read method="GCV" target="VLIM Setpoint" /> 
+	  </param>
+      
        <param name="i_limit" type="float64"> 
         <read method="GCV" target="I Limit (mA)" /> 
         <set method="SCV" extint="true" target="ILIM Setpoint"  post_button="Set ILim" /> 
 	  </param>
       
+      <param name="i_limit_sp" type="float64"> 
+        <read method="GCV" target="ILIM Setpoint" /> 
+	  </param>
+      
       <param name="i_trip" type="float64"> 
         <read method="GCV" target="I Trip (mA)" /> 
         <set method="SCV" extint="true" target="ITRP Setpoint" post_button="Set ITRP" /> 
+	  </param>
+      
+      <param name="i_trip_sp" type="float64"> 
+        <read method="GCV" target="ITRP Setpoint" /> 
 	  </param>
 	
       <param name="hv_on_rb" type="int32"> 
@@ -58,6 +70,10 @@
       <param name="toggle_hv" type="int32"> 
         <read method="GCV" target="HV ON" />
         <set method="SCV" extint="true" target="HV ON/OFF" /> 
+      </param>
+      
+      <param name="toggle_hv_sp" type="int32"> 
+        <read method="GCV" target="HV ON/OFF" />
       </param>
 
       
